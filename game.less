@@ -1,0 +1,35 @@
+@import './common.less';
+
+#GameOfWar {
+    .center-horizontal();
+
+    .status {
+        .messageBox();
+        padding: 15px;
+    }
+
+    .panel {
+        display: flex;
+        padding: 15px;
+        position: relative;
+    }
+
+    .player {
+        display: inline-block;
+    }
+
+    .CardStack {
+        position: relative;
+        padding: 0px 15px 0px 15px;
+        display: inline-block;
+    }
+
+    .info {
+        z-index: 1;
+        height: 95px;
+        width: 100px;
+        .messageBox();
+    }
+}
+
+

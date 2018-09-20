@@ -1,0 +1,11 @@
+{
+  "name": "gameofwar",
+  "version": "1.0.0",
+  "description": "The classic card game of war built using react",
+  "main": "app.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaac Adams",
+  "license": "ISC"
+}

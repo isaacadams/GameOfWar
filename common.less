@@ -1,0 +1,45 @@
+.center-horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+.center-vertical {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+
+.messageBox {
+    border: 2px solid #000000;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.90);
+    align-items: center;
+    text-align: center;
+    .center();
+}
+
+button {
+    &:focus {
+        outline: none;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    :active {
+        color: none;
+    }
+    &:hover {
+        color: lightseagreen;
+    }
+}
