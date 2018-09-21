@@ -1,6 +1,6 @@
 {
   "name": "gameofwar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The classic card game of war built using react",
   "main": "./dir/gameofwar.js",
   "scripts": {
