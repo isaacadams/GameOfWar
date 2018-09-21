@@ -58,7 +58,4 @@ node_modules/
 *.pidb
 *.svclog
 *.scc
-
-/FMBApi/logs.txt
-/FMBApi/wwwroot/vendor
-/FMBApi/wwwroot/dist/site.js
+*.sqlite
