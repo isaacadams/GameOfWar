@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     fs = require("fs"),
     watchify = require('watchify'),
     browserify = require("browserify"),
+    lessify = require('lessify'),
     path = require('path'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
@@ -21,24 +22,24 @@ var settings = {
     publish: './dir',
     entry: 'app.jsx',
     module: 'gameofwar.js',
-    css: 'site.min.css',
+    //css: 'site.min.css',
     get vendor() {
         return this.publish + '/vendor';
     }
 };
 
-function css() {
+//function css() {
 
-    var cssFiles = gulp.src(`${settings.source}/**/*.css`);
+//    var cssFiles = gulp.src(`${settings.source}/**/*.css`);
 
-    var lessFiles = gulp.src([`${settings.source}/**/*.less`])
-        .pipe(less());
+//    var lessFiles = gulp.src([`${settings.source}/**/*.less`])
+//        .pipe(less());
 
-    return merge(cssFiles, lessFiles)
-        .pipe(minify())
-        .pipe(concat(settings.css))
-        .pipe(gulp.dest(settings.publish));
-}
+//    return merge(cssFiles, lessFiles)
+//        .pipe(minify())
+//        .pipe(concat(settings.css))
+//        .pipe(gulp.dest(settings.publish));
+//}
 
 function scripts() {
     var customOpts = {
@@ -53,6 +54,7 @@ function scripts() {
     var b = watchify(browserify(opts));
 
     b.transform("babelify", { presets: ["env", "react"] });
+    b.transform(lessify);
 
     b.on('update', bundle); // on any dep update, runs the bundler
     b.on('log', log.info); // output build logs to terminal
@@ -107,10 +109,10 @@ function vendors() {
     return merge(streams);
 }
 
-var build = gulp.series(css, scripts, vendors);
+var build = gulp.series(/*css, */scripts, vendors);
 
 gulp.task('build', () => {
     return build();
 });
 
-gulp.task('css', css);
+//gulp.task('css', css);

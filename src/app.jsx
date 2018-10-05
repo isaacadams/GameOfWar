@@ -1,8 +1,10 @@
+import Styles from './game.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { GameOfWar } from './GameOfWar';
 import { GameButton } from './Components/GameButton.jsx';
 import { GamePlayer } from './Components/GamePlayer.jsx';
+
 
 export class GameOfWarPage extends React.Component {
     constructor() {
