@@ -1,4 +1,4 @@
-import { Player, Deck } from './CardGame.js';
+import { Player, Deck } from './CardGame';
 import { isNullOrUndefined } from 'util';
 
 export class GameOfWar {

@@ -5,6 +5,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify-css'),
     merge = require('merge-stream'),
+    uglify = require('gulp-uglify'),
+    rimraf = require("rimraf"),
     fs = require("fs"),
     watchify = require('watchify'),
     browserify = require("browserify"),
@@ -14,20 +16,33 @@ var gulp = require('gulp'),
     assign = require('lodash.assign'),
     log = require('gulplog');
 
+var settings = {
+    source: './src',
+    publish: './dir',
+    entry: 'app.jsx',
+    module: 'gameofwar.js',
+    css: 'site.min.css',
+    get vendor() {
+        return this.publish + '/vendor';
+    }
+};
+
 function css() {
 
-    var lessFiles = gulp.src('./src/**/*.less')
+    var cssFiles = gulp.src(`${settings.source}/**/*.css`);
+
+    var lessFiles = gulp.src([`${settings.source}/**/*.less`])
         .pipe(less());
 
-    return merge(lessFiles)
-        .pipe(concat('styles.min.css'))
+    return merge(cssFiles, lessFiles)
         .pipe(minify())
-        .pipe(gulp.dest('./dir'));
+        .pipe(concat(settings.css))
+        .pipe(gulp.dest(settings.publish));
 }
 
 function scripts() {
     var customOpts = {
-        entries: ['./src/app.jsx'/*, './src/GameOfWar/app.jsx'*/],
+        entries: [`${settings.source}/${settings.entry}`],
         debug: true,
         paths: ['./node_modules'],
         opts: {
@@ -45,15 +60,54 @@ function scripts() {
     function bundle() {
         return b.bundle()
             .on('error', log.error.bind(log, 'Browserify Error'))
-            .pipe(source('gameofwar.js'))
+            .pipe(source(settings.module))
             .pipe(buffer())
+            .pipe(uglify())
             .pipe(gulp.dest('./dir'));
     }
 
     return bundle();
 }
 
-var build = gulp.series(css, scripts);
+// Dependency Dirs
+var deps = {
+    "bootstrap": {
+        "dist/**/*": ""
+    },
+    "jquery": {
+        "dist/*": ""
+    },
+    "jquery-validation": {
+        "dist/**/*": ""
+    },
+    "jquery-validation-unobtrusive": {
+        "dist/*": ""
+    },
+    "popper.js": {
+        "dist/**/*": ""
+    }
+};
+
+
+function vendors() {
+
+    //Clean the directory
+    //rimraf(settings.vendor + '/', );
+
+    var streams = [];
+
+    for (var prop in deps) {
+        console.log("Prepping Scripts for: " + prop);
+        for (var itemProp in deps[prop]) {
+            streams.push(gulp.src("node_modules/" + prop + '/' + itemProp)
+                .pipe(gulp.dest(settings.vendor + '/' + prop + '/' + deps[prop][itemProp])));
+        }
+    }
+
+    return merge(streams);
+}
+
+var build = gulp.series(css, scripts, vendors);
 
 gulp.task('build', () => {
     return build();
