@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 var settings = {
     source: './src',
     publish: './dir',
-    entry: 'app.jsx',
+    entry: 'index.js',
     module: 'gameofwar.js',
     //css: 'site.min.css',
     get vendor() {

@@ -1,11 +1,9 @@
-import Styles from './game.less';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { GameOfWar } from './GameOfWar';
-import { GameButton } from './Components/GameButton.jsx';
-import { GamePlayer } from './Components/GamePlayer.jsx';
+import { GameOfWar } from './../GameOfWar';
+import { GameButton } from './GameButton.jsx';
+import { GamePlayer } from './GamePlayer.jsx';
 
-class GameOfWarPage extends React.Component {
+export class GameOfWarPage extends React.Component {
     constructor() {
         super();
         
@@ -49,9 +47,3 @@ class GameOfWarPage extends React.Component {
         );
     }
 }
-
-export default function Render(domId) {
-    ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
-}
-
-//Render('body');
