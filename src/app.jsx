@@ -5,8 +5,7 @@ import { GameOfWar } from './GameOfWar';
 import { GameButton } from './Components/GameButton.jsx';
 import { GamePlayer } from './Components/GamePlayer.jsx';
 
-
-export class GameOfWarPage extends React.Component {
+class GameOfWarPage extends React.Component {
     constructor() {
         super();
         
@@ -51,7 +50,7 @@ export class GameOfWarPage extends React.Component {
     }
 }
 
-export function Render(domId) {
+export default function Render(domId) {
     ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
 }
 
