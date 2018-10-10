@@ -33162,8 +33162,6 @@ function hasOwnProperty(obj, prop) {
 'use strict';
 
 var gameofwar = require('./main');
-
-console.log(gameofwar);
-gameofwar.Render('body');
+gameofwar.Render('gameofwar');
 
 },{"./main":10}]},{},[33]);

@@ -26,7 +26,7 @@ var bundles = {
         source: './',
         entry: 'test.js',
         publish: './test',
-        module: 'test.js'
+        module: 'index.js'
     }
 };
 
@@ -77,7 +77,7 @@ var bundles = {
 //        .pipe(gulp.dest(bundle.publish));
 //});
 
-gulp.task('test', function () {
+gulp.task('build', function () {
     var bundle = bundles.test;
 
     var customOpts = {
