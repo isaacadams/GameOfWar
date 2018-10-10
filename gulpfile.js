@@ -5,23 +5,19 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify-css'),
     merge = require('merge-stream'),
-    uglify = require('gulp-uglify'),
     rimraf = require("rimraf"),
     fs = require("fs"),
-    watchify = require('watchify'),
     browserify = require("browserify"),
     lessify = require('lessify'),
     path = require('path'),
     source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    assign = require('lodash.assign'),
-    log = require('gulplog');
+    buffer = require('vinyl-buffer');
 
 var settings = {
-    source: './src',
-    publish: './dir',
-    entry: 'index.js',
-    module: 'gameofwar.js',
+    source: './app',
+    publish: './test',
+    entry: 'test.js',
+    module: 'test.js',
     //css: 'site.min.css',
     get vendor() {
         return this.publish + '/vendor';
@@ -43,76 +39,21 @@ var settings = {
 
 function scripts() {
     var customOpts = {
-        entries: [`${settings.source}/${settings.entry}`],
-        debug: true,
-        paths: ['./node_modules'],
-        opts: {
-            standalone: 'index'
-        }
+        entries: [`${settings.source}/${settings.entry}`]
     };
-    var opts = assign({}, watchify.args, customOpts);
-    var b = watchify(browserify(opts));
+    var b = browserify(customOpts);
 
     b.transform("babelify", { presets: ["env", "react"] });
     b.transform(lessify);
-
-    b.on('update', bundle); // on any dep update, runs the bundler
-    b.on('log', log.info); // output build logs to terminal
-
-    function bundle() {
-        return b.bundle()
-            .on('error', log.error.bind(log, 'Browserify Error'))
-            .pipe(source(settings.module))
-            .pipe(buffer())
-            .pipe(uglify())
-            .pipe(gulp.dest('./dir'));
-    }
-
-    return bundle();
+    
+    return b.bundle()
+        .pipe(source(settings.module))
+        .pipe(buffer())
+        .pipe(gulp.dest(settings.publish));
 }
 
-// Dependency Dirs
-var deps = {
-    "bootstrap": {
-        "dist/**/*": ""
-    },
-    "jquery": {
-        "dist/*": ""
-    },
-    "jquery-validation": {
-        "dist/**/*": ""
-    },
-    "jquery-validation-unobtrusive": {
-        "dist/*": ""
-    },
-    "popper.js": {
-        "dist/**/*": ""
-    }
-};
-
-
-function vendors() {
-
-    //Clean the directory
-    //rimraf(settings.vendor + '/', );
-
-    var streams = [];
-
-    for (var prop in deps) {
-        console.log("Prepping Scripts for: " + prop);
-        for (var itemProp in deps[prop]) {
-            streams.push(gulp.src("node_modules/" + prop + '/' + itemProp)
-                .pipe(gulp.dest(settings.vendor + '/' + prop + '/' + deps[prop][itemProp])));
-        }
-    }
-
-    return merge(streams);
-}
-
-var build = gulp.series(/*css, */scripts, vendors);
-
-gulp.task('build', () => {
-    return build();
+gulp.task('test', () => {
+    return scripts();
 });
 
 //gulp.task('css', css);
