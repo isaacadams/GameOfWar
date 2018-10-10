@@ -1,4 +1,4 @@
 var gameofwar = require('./main');
-var less = require('./Styles/game.less');
 
+console.log(gameofwar);
 gameofwar.Render('body');

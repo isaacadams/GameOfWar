@@ -1,6 +1,7 @@
 "use strict";
 
 var gulp = require('gulp'),
+    uglify = require('gulp-uglify'),
     less = require('gulp-less'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify-css'),
@@ -11,16 +12,21 @@ var gulp = require('gulp'),
     lessify = require('lessify'),
     path = require('path'),
     source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer');
+    buffer = require('vinyl-buffer'),
+    babel = require("gulp-babel");
 
-var settings = {
-    source: './app',
-    publish: './test',
-    entry: 'test.js',
-    module: 'test.js',
-    //css: 'site.min.css',
-    get vendor() {
-        return this.publish + '/vendor';
+var bundles = {
+    main: {
+        source: './app',
+        publish: './',
+        entry: 'Components/GameOfWarPage.jsx',
+        module: 'main.js'
+    },
+    test: {
+        source: './',
+        entry: 'test.js',
+        publish: './test',
+        module: 'test.js'
     }
 };
 
@@ -37,23 +43,53 @@ var settings = {
 //        .pipe(gulp.dest(settings.publish));
 //}
 
-function scripts() {
+//gulp.task('build', function () {
+//    var bundle = bundles.main;
+
+//    var customOpts = {
+//        entries: [`${bundle.source}/${bundle.entry}`],
+//        opts: {
+//            browserField: false,
+//            bare: true
+//        }
+//    };
+//    var b = browserify(customOpts);
+
+//    b.transform("babelify", { presets: ['env', 'react'] });
+//    b.transform(lessify);
+
+//    return b.bundle()
+//        .pipe(source(bundle.module))
+//        .pipe(buffer())
+//        .pipe(uglify())
+//        .pipe(gulp.dest(bundle.publish));
+//});
+
+//gulp.task('build', function () {
+//    var bundle = bundles.main;
+
+//    return gulp.src('./app/**/*.{js,jsx}')
+//        .pipe(babel({
+//            presets: ['@babel/env', '@babel/react']
+//        }))
+//        //.pipe(lessify())
+//        .pipe(concat(bundle.module))
+//        .pipe(gulp.dest(bundle.publish));
+//});
+
+gulp.task('test', function () {
+    var bundle = bundles.test;
+
     var customOpts = {
-        entries: [`${settings.source}/${settings.entry}`]
+        entries: [`${bundle.source}/${bundle.entry}`]
     };
     var b = browserify(customOpts);
 
-    b.transform("babelify", { presets: ["env", "react"] });
+    b.transform("babelify", { presets: ['env', 'react'] });
     b.transform(lessify);
-    
+
     return b.bundle()
-        .pipe(source(settings.module))
+        .pipe(source(bundle.module))
         .pipe(buffer())
-        .pipe(gulp.dest(settings.publish));
-}
-
-gulp.task('test', () => {
-    return scripts();
+        .pipe(gulp.dest(bundle.publish));
 });
-
-//gulp.task('css', css);

@@ -1,4 +1,4 @@
-
+var less = require('./../Styles/game.less');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var GameOfWar = require('./../GameOfWar').GameOfWar;

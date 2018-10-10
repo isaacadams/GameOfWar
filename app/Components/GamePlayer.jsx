@@ -1,10 +1,3 @@
-
-//import { isNullOrUndefined } from 'util';
-//import { relative } from 'path';
-
-//import { GameCardStack } from './GameCardStack.jsx';
-//import { GamePlayerInfo } from './GamePlayerInfo.jsx';
-
 var GameCardStack = require('./GameCardStack.jsx').GameCardStack;
 var GamePlayerInfo = require('./GamePlayerInfo.jsx').GamePlayerInfo;
 var React = require('react');

@@ -128,7 +128,7 @@ var Player = exports.Player = function () {
     return Player;
 }();
 
-},{"util":33}],2:[function(require,module,exports){
+},{"util":32}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -144,7 +144,7 @@ var GameButton = exports.GameButton = function GameButton(props) {
     );
 };
 
-},{"react":25}],3:[function(require,module,exports){
+},{"react":24}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -175,7 +175,7 @@ var GameCard = exports.GameCard = function GameCard(props) {
     );
 };
 
-},{"react":25,"util":33}],4:[function(require,module,exports){
+},{"react":24,"util":32}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -205,7 +205,7 @@ var GameCardStack = exports.GameCardStack = function GameCardStack(props) {
     );
 };
 
-},{"./GameCard.jsx":3,"react":25,"util":33}],5:[function(require,module,exports){
+},{"./GameCard.jsx":3,"react":24,"util":32}],5:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -216,6 +216,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var less = require('./../Styles/game.less');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var GameOfWar = require('./../GameOfWar').GameOfWar;
@@ -289,7 +290,7 @@ module.exports = {
     }
 };
 
-},{"./../GameOfWar":8,"./GameButton.jsx":2,"./GamePlayer.jsx":6,"react":25,"react-dom":22}],6:[function(require,module,exports){
+},{"./../GameOfWar":8,"./../Styles/game.less":9,"./GameButton.jsx":2,"./GamePlayer.jsx":6,"react":24,"react-dom":21}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -303,12 +304,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//import { isNullOrUndefined } from 'util';
-//import { relative } from 'path';
-
-//import { GameCardStack } from './GameCardStack.jsx';
-//import { GamePlayerInfo } from './GamePlayerInfo.jsx';
 
 var GameCardStack = require('./GameCardStack.jsx').GameCardStack;
 var GamePlayerInfo = require('./GamePlayerInfo.jsx').GamePlayerInfo;
@@ -381,7 +376,7 @@ var GamePlayer = exports.GamePlayer = function (_React$Component) {
     return GamePlayer;
 }(React.Component);
 
-},{"./GameCardStack.jsx":4,"./GamePlayerInfo.jsx":7,"jquery":14,"react":25}],7:[function(require,module,exports){
+},{"./GameCardStack.jsx":4,"./GamePlayerInfo.jsx":7,"jquery":13,"react":24}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -408,7 +403,7 @@ var GamePlayerInfo = exports.GamePlayerInfo = function GamePlayerInfo(props) {
     );
 };
 
-},{"react":25}],8:[function(require,module,exports){
+},{"react":24}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -517,26 +512,18 @@ var GameOfWar = exports.GameOfWar = function () {
     return GameOfWar;
 }();
 
-},{"./CardGame":1,"util":33}],9:[function(require,module,exports){
+},{"./CardGame":1,"util":32}],9:[function(require,module,exports){
 var css = ".center-horizontal {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n.center-vertical {\n  top: 50%;\n  transform: translateY(-50%);\n  position: absolute;\n}\n.center {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\n.messageBox {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nbutton:focus {\n  outline: none;\n}\na {\n  color: black;\n  text-decoration: none;\n}\na :active {\n  color: none;\n}\na:hover {\n  color: lightseagreen;\n}\n#GameOfWar {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n#GameOfWar .status {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n  padding: 15px;\n}\n#GameOfWar .panel {\n  display: flex;\n  padding: 15px;\n  position: relative;\n}\n#GameOfWar .player {\n  display: inline-block;\n}\n#GameOfWar .CardStack {\n  position: relative;\n  padding: 0px 15px 0px 15px;\n  display: inline-block;\n}\n#GameOfWar .info {\n  z-index: 1;\n  height: 95px;\n  width: 100px;\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background-color: white;\n  background-size: auto 100%;\n  background-repeat: no-repeat;\n  background-position: left top;\n}\n.btn {\n  color: #000;\n  background: transparent;\n  border: 2px solid #000;\n  border-radius: 6px;\n  padding: 10px 20px;\n  text-align: center;\n  display: inline-block;\n  font-size: 12px;\n  margin: 4px 2px;\n  transition-duration: 0.4s;\n  cursor: pointer;\n  text-decoration: none;\n  text-transform: uppercase;\n  font-family: Lato;\n}\n.btn:hover {\n  background-color: #000;\n  color: white;\n}\n";(require('lessify'))(css); module.exports = css;
-},{"lessify":15}],10:[function(require,module,exports){
-"use strict";
-
-var GameOfWarPage = require('./Components/GameOfWarPage.jsx');
-
-module.exports = {
-    Render: GameOfWarPage.Render
-};
-
-},{"./Components/GameOfWarPage.jsx":5}],11:[function(require,module,exports){
+},{"lessify":14}],10:[function(require,module,exports){
 'use strict';
 
-var gameofwar = require('./main');
-var less = require('./Styles/game.less');
+var gameofwar = require('./app/Components/GameOfWarPage.jsx');
 
-gameofwar.Render('body');
+module.exports = {
+    Render: gameofwar.Render
+};
 
-},{"./Styles/game.less":9,"./main":10}],12:[function(require,module,exports){
+},{"./app/Components/GameOfWarPage.jsx":5}],11:[function(require,module,exports){
 module.exports = function (css, customDocument) {
   var doc = customDocument || document;
   if (doc.createStyleSheet) {
@@ -575,7 +562,7 @@ module.exports.byUrl = function(url) {
   }
 };
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -600,7 +587,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
@@ -10966,10 +10953,10 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = require('cssify');
 
-},{"cssify":12}],16:[function(require,module,exports){
+},{"cssify":11}],15:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -11061,7 +11048,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -11247,7 +11234,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -11342,7 +11329,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 module.exports = checkPropTypes;
 
 }).call(this,require('_process'))
-},{"./lib/ReactPropTypesSecret":19,"_process":17}],19:[function(require,module,exports){
+},{"./lib/ReactPropTypesSecret":18,"_process":16}],18:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -11356,7 +11343,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
-},{}],20:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function (process){
 /** @license React v16.5.2
  * react-dom.development.js
@@ -29619,7 +29606,7 @@ module.exports = reactDom;
 }
 
 }).call(this,require('_process'))
-},{"_process":17,"object-assign":16,"prop-types/checkPropTypes":18,"react":25,"schedule":30,"schedule/tracing":31}],21:[function(require,module,exports){
+},{"_process":16,"object-assign":15,"prop-types/checkPropTypes":17,"react":24,"schedule":29,"schedule/tracing":30}],20:[function(require,module,exports){
 /** @license React v16.5.2
  * react-dom.production.min.js
  *
@@ -29856,7 +29843,7 @@ void 0:t("40");return a._reactRootContainer?(th(function(){Gh(null,null,a,!1,fun
 Ma,Na,Ea.injectEventPluginsByName,qa,Ua,function(a){za(a,Ta)},Jb,Kb,Id,Ga]},unstable_createRoot:function(a,b){Eh(a)?void 0:t("278");return new Dh(a,!0,null!=b&&!0===b.hydrate)}};(function(a){var b=a.findFiberByHostInstance;return Re(n({},a,{findHostInstanceByFiber:function(a){a=md(a);return null===a?null:a.stateNode},findFiberByHostInstance:function(a){return b?b(a):null}}))})({findFiberByHostInstance:Ka,bundleType:0,version:"16.5.2",rendererPackageName:"react-dom"});
 var Nh={default:Mh},Oh=Nh&&Mh||Nh;module.exports=Oh.default||Oh;
 
-},{"object-assign":16,"react":25,"schedule":30}],22:[function(require,module,exports){
+},{"object-assign":15,"react":24,"schedule":29}],21:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -29898,7 +29885,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react-dom.development.js":20,"./cjs/react-dom.production.min.js":21,"_process":17}],23:[function(require,module,exports){
+},{"./cjs/react-dom.development.js":19,"./cjs/react-dom.production.min.js":20,"_process":16}],22:[function(require,module,exports){
 (function (process){
 /** @license React v16.5.2
  * react.development.js
@@ -31628,7 +31615,7 @@ module.exports = react;
 }
 
 }).call(this,require('_process'))
-},{"_process":17,"object-assign":16,"prop-types/checkPropTypes":18}],24:[function(require,module,exports){
+},{"_process":16,"object-assign":15,"prop-types/checkPropTypes":17}],23:[function(require,module,exports){
 /** @license React v16.5.2
  * react.production.min.js
  *
@@ -31654,7 +31641,7 @@ _currentValue:a,_currentValue2:a,Provider:null,Consumer:null,unstable_read:null}
 var k=void 0;a.type&&a.type.defaultProps&&(k=a.type.defaultProps);for(c in b)J.call(b,c)&&!K.hasOwnProperty(c)&&(e[c]=void 0===b[c]&&void 0!==k?k[c]:b[c])}c=arguments.length-2;if(1===c)e.children=d;else if(1<c){k=Array(c);for(var l=0;l<c;l++)k[l]=arguments[l+2];e.children=k}return{$$typeof:p,type:a.type,key:g,ref:h,props:e,_owner:f}},createFactory:function(a){var b=L.bind(null,a);b.type=a;return b},isValidElement:N,version:"16.5.2",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentOwner:I,
 assign:m}},Y={default:X},Z=Y&&X||Y;module.exports=Z.default||Z;
 
-},{"object-assign":16}],25:[function(require,module,exports){
+},{"object-assign":15}],24:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -31665,7 +31652,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react.development.js":23,"./cjs/react.production.min.js":24,"_process":17}],26:[function(require,module,exports){
+},{"./cjs/react.development.js":22,"./cjs/react.production.min.js":23,"_process":16}],25:[function(require,module,exports){
 (function (process){
 /** @license React v16.5.2
  * schedule-tracing.development.js
@@ -32096,7 +32083,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 }
 
 }).call(this,require('_process'))
-},{"_process":17}],27:[function(require,module,exports){
+},{"_process":16}],26:[function(require,module,exports){
 /** @license React v16.5.2
  * schedule-tracing.production.min.js
  *
@@ -32108,7 +32095,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 
 'use strict';Object.defineProperty(exports,"__esModule",{value:!0});var b=0;exports.__interactionsRef=null;exports.__subscriberRef=null;exports.unstable_clear=function(a){return a()};exports.unstable_getCurrent=function(){return null};exports.unstable_getThreadID=function(){return++b};exports.unstable_trace=function(a,d,c){return c()};exports.unstable_wrap=function(a){return a};exports.unstable_subscribe=function(){};exports.unstable_unsubscribe=function(){};
 
-},{}],28:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (process){
 /** @license React v16.5.2
  * schedule.development.js
@@ -32534,7 +32521,7 @@ exports.unstable_cancelScheduledWork = unstable_cancelScheduledWork;
 }
 
 }).call(this,require('_process'))
-},{"_process":17}],29:[function(require,module,exports){
+},{"_process":16}],28:[function(require,module,exports){
 /** @license React v16.5.2
  * schedule.production.min.js
  *
@@ -32552,7 +32539,7 @@ var E=null,F=!1,G=-1,H=!1,I=!1,J=0,K=33,L=33;h=function(){return J};var M="__rea
 b){E=a;G=b;I?window.postMessage(M,"*"):H||(H=!0,A(N))};n=function(){E=null;F=!1;G=-1}}exports.unstable_scheduleWork=function(a,b){var d=exports.unstable_now();b=void 0!==b&&null!==b&&null!==b.timeout&&void 0!==b.timeout?d+b.timeout:d+5E3;a={callback:a,timesOutAt:b,next:null,previous:null};if(null===c)c=a.next=a.previous=a,m(c);else{d=null;var k=c;do{if(k.timesOutAt>b){d=k;break}k=k.next}while(k!==c);null===d?d=c:d===c&&(c=a,m(c));b=d.previous;b.next=d.previous=a;a.next=d;a.previous=b}return a};
 exports.unstable_cancelScheduledWork=function(a){var b=a.next;if(null!==b){if(b===a)c=null;else{a===c&&(c=b);var d=a.previous;d.next=b;b.previous=d}a.next=a.previous=null}};
 
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -32563,7 +32550,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/schedule.development.js":28,"./cjs/schedule.production.min.js":29,"_process":17}],31:[function(require,module,exports){
+},{"./cjs/schedule.development.js":27,"./cjs/schedule.production.min.js":28,"_process":16}],30:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -32574,14 +32561,14 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/schedule-tracing.development.js":26,"./cjs/schedule-tracing.production.min.js":27,"_process":17}],32:[function(require,module,exports){
+},{"./cjs/schedule-tracing.development.js":25,"./cjs/schedule-tracing.production.min.js":26,"_process":16}],31:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],33:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -33171,4 +33158,12 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":32,"_process":17,"inherits":13}]},{},[11]);
+},{"./support/isBuffer":31,"_process":16,"inherits":12}],33:[function(require,module,exports){
+'use strict';
+
+var gameofwar = require('./main');
+
+console.log(gameofwar);
+gameofwar.Render('body');
+
+},{"./main":10}]},{},[33]);
