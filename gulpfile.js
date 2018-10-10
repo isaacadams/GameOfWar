@@ -25,7 +25,7 @@ var bundles = {
     test: {
         source: './',
         entry: 'test.js',
-        publish: './test',
+        publish: './dist',
         module: 'index.js'
     }
 };
