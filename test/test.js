@@ -208,10 +208,6 @@ var GameCardStack = exports.GameCardStack = function GameCardStack(props) {
 },{"./GameCard.jsx":3,"react":25,"util":33}],5:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -220,17 +216,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//import React from 'react';
-//import { GameOfWar } from './../GameOfWar';
-//import { GameButton } from './GameButton.jsx';
-//import { GamePlayer } from './GamePlayer.jsx';
-
 var React = require('react');
+var ReactDOM = require('react-dom');
 var GameOfWar = require('./../GameOfWar').GameOfWar;
 var GameButton = require('./GameButton.jsx').GameButton;
 var GamePlayer = require('./GamePlayer.jsx').GamePlayer;
 
-var GameOfWarPage = exports.GameOfWarPage = function (_React$Component) {
+var GameOfWarPage = function (_React$Component) {
     _inherits(GameOfWarPage, _React$Component);
 
     function GameOfWarPage() {
@@ -291,7 +283,13 @@ var GameOfWarPage = exports.GameOfWarPage = function (_React$Component) {
     return GameOfWarPage;
 }(React.Component);
 
-},{"./../GameOfWar":8,"./GameButton.jsx":2,"./GamePlayer.jsx":6,"react":25}],6:[function(require,module,exports){
+module.exports = {
+    Render: function Render(domId) {
+        ReactDOM.render(React.createElement(GameOfWarPage, null), document.getElementById(domId));
+    }
+};
+
+},{"./../GameOfWar":8,"./GameButton.jsx":2,"./GamePlayer.jsx":6,"react":25,"react-dom":22}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -524,19 +522,13 @@ var css = ".center-horizontal {\n  left: 50%;\n  transform: translateX(-50%);\n 
 },{"lessify":15}],10:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var GameOfWarPage = require('./Components/GameOfWarPage.jsx').GameOfWarPage;
+var GameOfWarPage = require('./Components/GameOfWarPage.jsx');
 
 module.exports = {
-    Render: function Render(domId) {
-        ReactDOM.render(React.createElement(GameOfWarPage, null), document.getElementById(domId));
-    }
+    Render: GameOfWarPage.Render
 };
 
-//Render('body');
-
-},{"./Components/GameOfWarPage.jsx":5,"react":25,"react-dom":22}],11:[function(require,module,exports){
+},{"./Components/GameOfWarPage.jsx":5}],11:[function(require,module,exports){
 'use strict';
 
 var gameofwar = require('./main');

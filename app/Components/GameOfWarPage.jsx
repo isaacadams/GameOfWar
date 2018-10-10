@@ -1,15 +1,11 @@
-//import React from 'react';
-//import { GameOfWar } from './../GameOfWar';
-//import { GameButton } from './GameButton.jsx';
-//import { GamePlayer } from './GamePlayer.jsx';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var GameOfWar = require('./../GameOfWar').GameOfWar;
 var GameButton = require('./GameButton.jsx').GameButton;
 var GamePlayer = require('./GamePlayer.jsx').GamePlayer;
 
-
-export class GameOfWarPage extends React.Component {
+class GameOfWarPage extends React.Component {
     constructor() {
         super();
         
@@ -53,3 +49,9 @@ export class GameOfWarPage extends React.Component {
         );
     }
 }
+
+module.exports = {
+    Render: function (domId) {
+        ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
+    }
+};
