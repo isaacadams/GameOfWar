@@ -24,19 +24,21 @@ export class GamePlayer extends React.Component {
 
             function Switch() {
                 //If the current state is OverWidth: false, then that means it is transitioning to OverWidth: true
-                var $computer = jquery('#computer');
-                var $deck = $computer.children().first();
-                $deck.remove();
-                $computer.children().after($deck);
-
-                if(!self.state.OverWidth) {
-                    $computer.parentsUntil('','.panel').css('width','max-content');
-                }
-                else {
-                    $computer.parentsUntil('','.panel').css('width','');
-                }                   
                 
-                self.state.OverWidth = !self.state.OverWidth;
+                //Switch the state
+                    self.state.OverWidth = !self.state.OverWidth;
+
+                //Switch the decks (stateless)
+                    let $computer = jquery('#computer');
+                    let $deck = $computer.children().first();
+                    //Remove the first deck
+                    $deck.remove();
+                    //Then place the removed deck after the deck that used to be second
+                    $computer.children().after($deck);
+                                
+                //Switch the width style (state dependent)
+                    let $parent = $computer.parentsUntil('','.panel');
+                    $parent.css('width', !self.state.OverWidth ? '' : 'max-content');
             }
             
         };
