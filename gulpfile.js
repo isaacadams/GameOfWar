@@ -18,8 +18,8 @@ var gulp = require('gulp'),
 var bundles = {
     main: {
         source: './app',
-        publish: './',
         entry: 'Components/GameOfWarPage.jsx',
+        publish: './',        
         module: 'main.js'
     },
     test: {
@@ -27,6 +27,12 @@ var bundles = {
         entry: 'test.js',
         publish: './dist',
         module: 'index.js'
+    },
+    bundle: {
+        source: './app',
+        entry: '**/*.{js,jsx}',
+        publish: './app/Components',
+        module: 'bundle.js'
     }
 };
 
@@ -65,17 +71,17 @@ var bundles = {
 //        .pipe(gulp.dest(bundle.publish));
 //});
 
-//gulp.task('build', function () {
-//    var bundle = bundles.main;
+gulp.task('bundle', function () {
+   var bundle = bundles.bundle;
 
-//    return gulp.src('./app/**/*.{js,jsx}')
-//        .pipe(babel({
-//            presets: ['@babel/env', '@babel/react']
-//        }))
-//        //.pipe(lessify())
-//        .pipe(concat(bundle.module))
-//        .pipe(gulp.dest(bundle.publish));
-//});
+   return gulp.src(`${bundle.source}/${bundle.entry}`)
+       .pipe(babel({
+           presets: ['@babel/env', '@babel/react']
+       }))
+       //.pipe(lessify())
+       .pipe(concat(bundle.module))
+       .pipe(gulp.dest(bundle.publish));
+});
 
 gulp.task('build', function () {
     var bundle = bundles.test;

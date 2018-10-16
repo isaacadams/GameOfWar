@@ -155,6 +155,7 @@ var isNullOrUndefined = require('util').isNullOrUndefined;
 
 var GameCard = exports.GameCard = function GameCard(props) {
     var path = './playingcards/1x/';
+    console.log(path);
     var suffix;
 
     if (isNullOrUndefined(props.card)) suffix = props.back ? 'back' : 'card-base';else suffix = props.card.suit + '_' + props.card.name;

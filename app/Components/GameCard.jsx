@@ -1,6 +1,5 @@
-var React = require('react');
-var isNullOrUndefined = require('util').isNullOrUndefined;
-
+let React = require('react');
+let isNullOrUndefined = require('util').isNullOrUndefined;
 
 export const GameCard = (props) => {
     var path = './playingcards/1x/';
