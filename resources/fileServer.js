@@ -41,5 +41,13 @@ app.use(function onRequest(req, res) {
 
 });
 
-
 app.listen(3000);
+
+var { exec } = require('child_process');
+
+module.exports = {
+    Listen: function (cb) {
+        return exec('node ./fileServer.js', cb);
+    }
+};
+

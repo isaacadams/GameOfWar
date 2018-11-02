@@ -4,7 +4,8 @@
   "description": "The classic card game of war built using react",
   "main": "main.js",
   "scripts": {
-    "serve": "gulp bundle && gulp test && node ./resources/fileServer.js"
+    "serve": "gulp bundle && npm run test",
+    "test": "gulp test && start ./test/index.html && node ./resources/fileServer.js"
   },
   "author": "Isaac Adams",
   "license": "ISC",
