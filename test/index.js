@@ -4,160 +4,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Player = exports.Deck = void 0;
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;
-}
-
-var util = require('util');
-
-var Queue =
-/*#__PURE__*/
-function () {
-  function Queue() {
-    _classCallCheck(this, Queue);
-
-    this.array = [];
-  }
-
-  _createClass(Queue, [{
-    key: "enqueue",
-    value: function enqueue(element) {
-      this.array.push(element);
-    }
-  }, {
-    key: "dequeue",
-    value: function dequeue() {
-      return this.array.shift();
-    }
-  }, {
-    key: "length",
-    get: function get() {
-      return this.array.length;
-    }
-  }]);
-
-  return Queue;
-}();
-
-var Card = function Card(value, suit, name) {
-  _classCallCheck(this, Card);
-
-  this.value = value;
-  this.suit = suit;
-  this.name = name;
-};
-
-var Deck =
-/*#__PURE__*/
-function () {
-  function Deck() {
-    _classCallCheck(this, Deck);
-
-    this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
-    this.suits = ['club', 'heart', 'spade', 'diamond'];
-    this.cards = [];
-
-    for (var n = 0; n < this.names.length; n++) {
-      for (var s = 0; s < this.suits.length; s++) {
-        this.cards.push(new Card(n + 1, this.suits[s], this.names[n]));
-      }
-    }
-
-    this.shuffle();
-  }
-
-  _createClass(Deck, [{
-    key: "shuffle",
-    value: function shuffle() {
-      this.cards.sort(function (a, b) {
-        return 0.5 - Math.random();
-      });
-    }
-  }, {
-    key: "deal",
-    value: function deal(players, numOfCardsPerHand) {
-      for (var i = 0; i < players.length; i++) {
-        for (var c = 0; c < numOfCardsPerHand; c++) {
-          players[i].add(this.cards.pop());
-        }
-      }
-    }
-  }]);
-
-  return Deck;
-}();
-
-exports.Deck = Deck;
-
-var Player =
-/*#__PURE__*/
-function () {
-  function Player(isComputer) {
-    _classCallCheck(this, Player);
-
-    this.isComputer = isComputer;
-    this.name = this.isComputer ? 'Computer' : 'User';
-    this.hand = new Queue();
-    this.stack = [];
-    this.viewStack = [];
-  }
-
-  _createClass(Player, [{
-    key: "add",
-    value: function add(card) {
-      this.hand.enqueue(card);
-    }
-  }, {
-    key: "draw",
-    value: function draw(numberOfCardsToDraw) {
-      for (var i = 0; i < numberOfCardsToDraw; i++) {
-        this.stack.push(this.hand.dequeue());
-      }
-    }
-  }, {
-    key: "transferStack",
-    value: function transferStack(queue) {
-      this.viewStack = [];
-      var length = this.stack.length;
-
-      for (var i = 0; i < length; i++) {
-        var card = this.stack.pop();
-        this.viewStack.unshift(card);
-        queue.enqueue(card);
-      }
-    }
-  }, {
-    key: "cardInPlay",
-    get: function get() {
-      return util.isNullOrUndefined(this.stack[0]) ? new Card() : this.stack[this.stack.length - 1];
-    }
-  }]);
-
-  return Player;
-}();
-
-exports.Player = Player;
-
-},{"util":65}],2:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.GameButton = void 0;
 
 var React = require('react');
@@ -171,7 +17,7 @@ var GameButton = function GameButton(props) {
 
 exports.GameButton = GameButton;
 
-},{"react":37}],3:[function(require,module,exports){
+},{"react":37}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -199,8 +45,7 @@ var GameCard = function GameCard(props) {
     host: 'localhost',
     port: 3000,
     path: '/?image=' + suffix
-  }; //let src1 = "data:image/png;base64,'" + this.state.picture + "'";
-
+  };
   var src = "http://".concat(options.host, ":").concat(options.port + options.path);
   return React.createElement("div", {
     style: css
@@ -211,7 +56,7 @@ var GameCard = function GameCard(props) {
 
 exports.GameCard = GameCard;
 
-},{"http":54,"react":37,"util":65}],4:[function(require,module,exports){
+},{"http":54,"react":37,"util":65}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -252,150 +97,7 @@ var GameCardStack = function GameCardStack(props) {
 
 exports.GameCardStack = GameCardStack;
 
-},{"./GameCard":3,"react":37,"util":65}],5:[function(require,module,exports){
-"use strict";
-
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-    };
-  }return _typeof(obj);
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }return _assertThisInitialized(self);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return self;
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };return _getPrototypeOf(o);
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;return o;
-  };return _setPrototypeOf(o, p);
-}
-
-var less = require('./../../resources/Styles/game.less');
-
-var React = require('react');
-
-var ReactDOM = require('react-dom');
-
-var GameOfWar = require('./../GameOfWar').GameOfWar;
-
-var GameButton = require('./GameButton').GameButton;
-
-var GamePlayer = require('./GamePlayer').GamePlayer;
-
-var GameOfWarPage =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(GameOfWarPage, _React$Component);
-
-  function GameOfWarPage() {
-    var _this;
-
-    _classCallCheck(this, GameOfWarPage);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(GameOfWarPage).call(this));
-    var Game = new GameOfWar();
-    _this.state = {
-      Game: Game,
-      Message: 'Click "Deal" to begin the game',
-      Draw: 1
-    };
-
-    _this.handleClick = function (event) {
-      var game = _this.state.Game;
-
-      if (!game.gameOver) {
-        game.draw(_this.state.Draw);
-
-        _this.setState(game.saveState);
-      }
-    };
-
-    return _this;
-  }
-
-  _createClass(GameOfWarPage, [{
-    key: "render",
-    value: function render() {
-      var players = this.state.Game.players;
-      var playerView = [];
-
-      for (var i = 0; i < players.length; i++) {
-        playerView.push(React.createElement(GamePlayer, {
-          player: players[i],
-          key: i
-        }));
-      }
-
-      return React.createElement("div", {
-        id: "GameOfWar"
-      }, React.createElement("div", {
-        className: "panel"
-      }, React.createElement(GameButton, {
-        content: "Deal",
-        onClick: this.handleClick
-      }), React.createElement("div", {
-        className: "status"
-      }, this.state.Message)), React.createElement("div", {
-        className: "panel"
-      }, playerView));
-    }
-  }]);
-
-  return GameOfWarPage;
-}(React.Component);
-
-module.exports = {
-  Render: function Render(domId) {
-    ReactDOM.render(React.createElement(GameOfWarPage, null), document.getElementById(domId));
-  }
-};
-
-},{"./../../resources/Styles/game.less":67,"./../GameOfWar":8,"./GameButton":2,"./GamePlayer":6,"react":37,"react-dom":34}],6:[function(require,module,exports){
+},{"./GameCard":2,"react":37,"util":65}],4:[function(require,module,exports){
 "use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -552,7 +254,7 @@ function (_React$Component) {
 
 exports.GamePlayer = GamePlayer;
 
-},{"./GameCardStack":4,"./GamePlayerInfo":7,"jquery":21,"react":37}],7:[function(require,module,exports){
+},{"./GameCardStack":3,"./GamePlayerInfo":5,"jquery":21,"react":37}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -571,7 +273,304 @@ var GamePlayerInfo = function GamePlayerInfo(props) {
 
 exports.GamePlayerInfo = GamePlayerInfo;
 
-},{"react":37}],8:[function(require,module,exports){
+},{"react":37}],6:[function(require,module,exports){
+"use strict";
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+    };
+  }return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return self;
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };return _getPrototypeOf(o);
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;return o;
+  };return _setPrototypeOf(o, p);
+}
+
+var less = require('./../resources/Styles/game.less');
+
+var React = require('react');
+
+var ReactDOM = require('react-dom');
+
+var GameOfWar = require('./Logic/GameOfWar').GameOfWar;
+
+var GameButton = require('./Components/GameButton').GameButton;
+
+var GamePlayer = require('./Components/GamePlayer').GamePlayer;
+
+var GameOfWarPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(GameOfWarPage, _React$Component);
+
+  function GameOfWarPage() {
+    var _this;
+
+    _classCallCheck(this, GameOfWarPage);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GameOfWarPage).call(this));
+    var Game = new GameOfWar();
+    _this.state = {
+      Game: Game,
+      Message: 'Click "Deal" to begin the game',
+      Draw: 1
+    };
+
+    _this.handleClick = function (event) {
+      var game = _this.state.Game;
+
+      if (!game.gameOver) {
+        game.draw(_this.state.Draw);
+
+        _this.setState(game.saveState);
+      }
+    };
+
+    return _this;
+  }
+
+  _createClass(GameOfWarPage, [{
+    key: "render",
+    value: function render() {
+      var players = this.state.Game.players;
+      var playerView = [];
+
+      for (var i = 0; i < players.length; i++) {
+        playerView.push(React.createElement(GamePlayer, {
+          player: players[i],
+          key: i
+        }));
+      }
+
+      return React.createElement("div", {
+        id: "GameOfWar"
+      }, React.createElement("div", {
+        className: "panel"
+      }, React.createElement(GameButton, {
+        content: "Deal",
+        onClick: this.handleClick
+      }), React.createElement("div", {
+        className: "status"
+      }, this.state.Message)), React.createElement("div", {
+        className: "panel"
+      }, playerView));
+    }
+  }]);
+
+  return GameOfWarPage;
+}(React.Component);
+
+module.exports = {
+  Render: function Render(domId) {
+    ReactDOM.render(React.createElement(GameOfWarPage, null), document.getElementById(domId));
+  }
+};
+
+},{"./../resources/Styles/game.less":67,"./Components/GameButton":1,"./Components/GamePlayer":4,"./Logic/GameOfWar":8,"react":37,"react-dom":34}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Player = exports.Deck = void 0;
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;
+}
+
+var util = require('util');
+
+var Queue =
+/*#__PURE__*/
+function () {
+  function Queue() {
+    _classCallCheck(this, Queue);
+
+    this.array = [];
+  }
+
+  _createClass(Queue, [{
+    key: "enqueue",
+    value: function enqueue(element) {
+      this.array.push(element);
+    }
+  }, {
+    key: "dequeue",
+    value: function dequeue() {
+      return this.array.shift();
+    }
+  }, {
+    key: "length",
+    get: function get() {
+      return this.array.length;
+    }
+  }]);
+
+  return Queue;
+}();
+
+var Card = function Card(value, suit, name) {
+  _classCallCheck(this, Card);
+
+  this.value = value;
+  this.suit = suit;
+  this.name = name;
+};
+
+var Deck =
+/*#__PURE__*/
+function () {
+  function Deck() {
+    _classCallCheck(this, Deck);
+
+    this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+    this.suits = ['club', 'heart', 'spade', 'diamond'];
+    this.cards = [];
+
+    for (var n = 0; n < this.names.length; n++) {
+      for (var s = 0; s < this.suits.length; s++) {
+        this.cards.push(new Card(n + 1, this.suits[s], this.names[n]));
+      }
+    }
+
+    this.shuffle();
+  }
+
+  _createClass(Deck, [{
+    key: "shuffle",
+    value: function shuffle() {
+      this.cards.sort(function (a, b) {
+        return 0.5 - Math.random();
+      });
+    }
+  }, {
+    key: "deal",
+    value: function deal(players, numOfCardsPerHand) {
+      for (var i = 0; i < players.length; i++) {
+        for (var c = 0; c < numOfCardsPerHand; c++) {
+          players[i].add(this.cards.pop());
+        }
+      }
+    }
+  }]);
+
+  return Deck;
+}();
+
+exports.Deck = Deck;
+
+var Player =
+/*#__PURE__*/
+function () {
+  function Player(isComputer) {
+    _classCallCheck(this, Player);
+
+    this.isComputer = isComputer;
+    this.name = this.isComputer ? 'Computer' : 'User';
+    this.hand = new Queue();
+    this.stack = [];
+    this.viewStack = [];
+  }
+
+  _createClass(Player, [{
+    key: "add",
+    value: function add(card) {
+      this.hand.enqueue(card);
+    }
+  }, {
+    key: "draw",
+    value: function draw(numberOfCardsToDraw) {
+      for (var i = 0; i < numberOfCardsToDraw; i++) {
+        this.stack.push(this.hand.dequeue());
+      }
+    }
+  }, {
+    key: "transferStack",
+    value: function transferStack(queue) {
+      this.viewStack = [];
+      var length = this.stack.length;
+
+      for (var i = 0; i < length; i++) {
+        var card = this.stack.pop();
+        this.viewStack.unshift(card);
+        queue.enqueue(card);
+      }
+    }
+  }, {
+    key: "cardInPlay",
+    get: function get() {
+      return util.isNullOrUndefined(this.stack[0]) ? new Card() : this.stack[this.stack.length - 1];
+    }
+  }]);
+
+  return Player;
+}();
+
+exports.Player = Player;
+
+},{"util":65}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -694,16 +693,16 @@ function () {
 
 exports.GameOfWar = GameOfWar;
 
-},{"./CardGame":1,"util":65}],9:[function(require,module,exports){
+},{"./CardGame":7,"util":65}],9:[function(require,module,exports){
 'use strict';
 
-var gameofwar = require('./dist/Components/GameOfWarPage');
+var gameofwar = require('./dist/GameOfWarPage');
 
 module.exports = {
     Render: gameofwar.Render
 };
 
-},{"./dist/Components/GameOfWarPage":5}],10:[function(require,module,exports){
+},{"./dist/GameOfWarPage":6}],10:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength

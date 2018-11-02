@@ -15,16 +15,7 @@ app.use(function onRequest(req, res) {
         let pic = query.image;
 
         let picture_Path = './resources/playingcards/1x/' + pic + '.png';
-
-        //fs.exists(picture_Path, function (exists) {
-        //    if (exists) {
-        //        res.writeHead(200, { 'Content-type': 'text/plain' });
-        //        res.end(fs.);
-        //    } else {
-        //        error(err);
-        //    }
-        //});
-
+        
         fs.readFile(picture_Path, function (err, content) {
             if (err) {
                 error(err);

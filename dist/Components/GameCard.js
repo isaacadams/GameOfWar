@@ -25,8 +25,7 @@ var GameCard = function GameCard(props) {
     host: 'localhost',
     port: 3000,
     path: '/?image=' + suffix
-  }; //let src1 = "data:image/png;base64,'" + this.state.picture + "'";
-
+  };
   var src = "http://".concat(options.host, ":").concat(options.port + options.path);
   return React.createElement("div", {
     style: css

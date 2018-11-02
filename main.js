@@ -1,4 +1,4 @@
-var gameofwar = require('./dist/Components/GameOfWarPage');
+var gameofwar = require('./dist/GameOfWarPage');
 
 module.exports = {
     Render: gameofwar.Render

@@ -18,17 +18,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var less = require('./../../resources/Styles/game.less');
+var less = require('./../resources/Styles/game.less');
 
 var React = require('react');
 
 var ReactDOM = require('react-dom');
 
-var GameOfWar = require('./../GameOfWar').GameOfWar;
+var GameOfWar = require('./Logic/GameOfWar').GameOfWar;
 
-var GameButton = require('./GameButton').GameButton;
+var GameButton = require('./Components/GameButton').GameButton;
 
-var GamePlayer = require('./GamePlayer').GamePlayer;
+var GamePlayer = require('./Components/GamePlayer').GamePlayer;
 
 var GameOfWarPage =
 /*#__PURE__*/

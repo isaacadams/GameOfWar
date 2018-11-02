@@ -36,46 +36,15 @@ var bundles = {
     }
 };
 
-//function css() {
+gulp.task('bundle.clean', function (cb) {
+    var bundle = bundles.bundle;
+    return rimraf(bundle.publish, cb);
+});
 
-//    var cssFiles = gulp.src(`${settings.source}/**/*.css`);
-
-//    var lessFiles = gulp.src([`${settings.source}/**/*.less`])
-//        .pipe(less());
-
-//    return merge(cssFiles, lessFiles)
-//        .pipe(minify())
-//        .pipe(concat(settings.css))
-//        .pipe(gulp.dest(settings.publish));
-//}
-
-//gulp.task('build', function () {
-//    var bundle = bundles.main;
-
-//    var customOpts = {
-//        entries: [`${bundle.source}/${bundle.entry}`],
-//        opts: {
-//            browserField: false,
-//            bare: true
-//        }
-//    };
-//    var b = browserify(customOpts);
-
-//    b.transform("babelify", { presets: ['env', 'react'] });
-//    b.transform(lessify);
-
-//    return b.bundle()
-//        .pipe(source(bundle.module))
-//        .pipe(buffer())
-//        .pipe(uglify())
-//        .pipe(gulp.dest(bundle.publish));
-//});
-
-gulp.task('bundle', function () {
+gulp.task('bundle.build', function () {
     var bundle = bundles.bundle;
     let streams = [];
-
-
+    
     streams.push(
         gulp.src(`${bundle.source}/${bundle.entry}`)
         .pipe(babel({
@@ -94,7 +63,9 @@ gulp.task('bundle', function () {
     return merge(streams);
 });
 
-gulp.task('build', function () {
+gulp.task('bundle', gulp.series('bundle.clean', 'bundle.build'));
+
+gulp.task('test', function () {
     var bundle = bundles.test;
 
     var customOpts = {
