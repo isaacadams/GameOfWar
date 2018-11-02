@@ -25,13 +25,13 @@ var bundles = {
     test: {
         source: './',
         entry: 'test.js',
-        publish: './dist',
+        publish: './test',
         module: 'index.js'
     },
     bundle: {
         source: './app',
         entry: '**/*.{js,jsx}',
-        publish: './app/Components',
+        publish: './dist',
         module: 'bundle.js'
     }
 };
@@ -72,15 +72,26 @@ var bundles = {
 //});
 
 gulp.task('bundle', function () {
-   var bundle = bundles.bundle;
+    var bundle = bundles.bundle;
+    let streams = [];
 
-   return gulp.src(`${bundle.source}/${bundle.entry}`)
-       .pipe(babel({
-           presets: ['@babel/env', '@babel/react']
-       }))
-       //.pipe(lessify())
-       .pipe(concat(bundle.module))
-       .pipe(gulp.dest(bundle.publish));
+
+    streams.push(
+        gulp.src(`${bundle.source}/${bundle.entry}`)
+        .pipe(babel({
+            presets: ['@babel/env', '@babel/react']
+        }))
+        //.pipe(lessify())
+        //.pipe(concat(bundle.module))
+        .pipe(gulp.dest(bundle.publish))
+    );
+
+    //streams.push(
+    //    gulp.src(`${bundle.source}/**/*.{less,png}`)
+    //    .pipe(gulp.dest(bundle.publish))
+    //);
+
+    return merge(streams);
 });
 
 gulp.task('build', function () {

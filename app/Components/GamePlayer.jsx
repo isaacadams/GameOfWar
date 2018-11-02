@@ -1,5 +1,5 @@
-var GameCardStack = require('./GameCardStack.jsx').GameCardStack;
-var GamePlayerInfo = require('./GamePlayerInfo.jsx').GamePlayerInfo;
+var GameCardStack = require('./GameCardStack').GameCardStack;
+var GamePlayerInfo = require('./GamePlayerInfo').GamePlayerInfo;
 var React = require('react');
 var jquery = require('jquery');
 

@@ -1,9 +1,9 @@
-var less = require('./../Styles/game.less');
+var less = require('./../../resources/Styles/game.less');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var GameOfWar = require('./../GameOfWar').GameOfWar;
-var GameButton = require('./GameButton.jsx').GameButton;
-var GamePlayer = require('./GamePlayer.jsx').GamePlayer;
+var GameButton = require('./GameButton').GameButton;
+var GamePlayer = require('./GamePlayer').GamePlayer;
 
 class GameOfWarPage extends React.Component {
     constructor() {
@@ -52,6 +52,8 @@ class GameOfWarPage extends React.Component {
 
 module.exports = {
     Render: function (domId) {
+        
         ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
+
     }
 };

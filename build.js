@@ -1,38 +1,44 @@
-let cp = require('child_process');
+let path = require('path');
 
 
-cp.exec('npm version', function (err, stdout, stderr) {
+let name = path.dirname('index.js');
 
-    if (err) {
-        console.log(stderr);
-    }
-    else {
-        console.log(stdout);
-        let pattern = "(?<=gameofwar:\\s+\\\')(?!abc)(\\d+(\\.\\d+)*)";
-        console.log(pattern);
-        let match = stdout.match(pattern);
-        let version = match.shift();
 
-        //cp.exec('npm version ' + ++version);
+
+console.log(name);
+//let cp = require('child_process');
+
+//cp.exec('npm version', function (err, stdout, stderr) {
+
+//    if (err) {
+//        console.log(stderr);
+//    }
+//    else {
+//        console.log(stdout);
+//        let pattern = "(?<=gameofwar:\\s+\\\')(?!abc)(\\d+(\\.\\d+)*)";
+//        console.log(pattern);
+//        let match = stdout.match(pattern);
+//        let version = match.shift();
+
+//        //cp.exec('npm version ' + ++version);
         
-        console.log(`${version} ups to ${++version}`);
-    }
+//        console.log(`${version} ups to ${++version}`);
+//    }
 
-});
+//});
 
-function VersionClass(version) {
-    let self = {
-        major: 0,
-        minor: 0,
-        patch: 0
-    };
+//function VersionClass(version) {
+//    let self = {
+//        major: 0,
+//        minor: 0,
+//        patch: 0
+//    };
+    
+//    return self;
+//}
 
 
-    return self;
-}
 
 //String.prototype.insert = function (pattern, text) {
 //    this.replace(pattern);
 //};
-
-
