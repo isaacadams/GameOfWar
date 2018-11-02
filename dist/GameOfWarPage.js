@@ -30,8 +30,6 @@ var GameButton = require('./Components/GameButton').GameButton;
 
 var GamePlayer = require('./Components/GamePlayer').GamePlayer;
 
-var FileServer = require('./../resources/fileServer');
-
 var GameOfWarPage =
 /*#__PURE__*/
 function (_React$Component) {
@@ -97,6 +95,5 @@ function (_React$Component) {
 module.exports = {
   Render: function Render(domId) {
     ReactDOM.render(React.createElement(GameOfWarPage, null), document.getElementById(domId));
-    FileServer.Listen();
   }
 };

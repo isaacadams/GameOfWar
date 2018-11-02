@@ -3,6 +3,14 @@
   "version": "1.1.0",
   "description": "The classic card game of war built using react",
   "main": "main.js",
+  "homepage": "https://github.com/isaacadams/gameofwar/tree/master",
+  "bugs": {
+    "url": "https://github.com/isaacadams/gameofwar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isaacadams/gameofwar.git"
+  },
   "scripts": {
     "serve": "gulp bundle && npm run test",
     "test": "gulp test && start ./test/index.html && node ./resources/fileServer.js"
