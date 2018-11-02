@@ -61,3 +61,4 @@ node_modules/
 *.scc
 *.sqlite
 /dir/vendor/
+.vs/slnx.sqlite

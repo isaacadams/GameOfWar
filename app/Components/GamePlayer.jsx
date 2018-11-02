@@ -1,12 +1,5 @@
-
-//import { isNullOrUndefined } from 'util';
-//import { relative } from 'path';
-
-//import { GameCardStack } from './GameCardStack.jsx';
-//import { GamePlayerInfo } from './GamePlayerInfo.jsx';
-
-var GameCardStack = require('./GameCardStack.jsx').GameCardStack;
-var GamePlayerInfo = require('./GamePlayerInfo.jsx').GamePlayerInfo;
+var GameCardStack = require('./GameCardStack').GameCardStack;
+var GamePlayerInfo = require('./GamePlayerInfo').GamePlayerInfo;
 var React = require('react');
 var jquery = require('jquery');
 
@@ -30,12 +23,22 @@ export class GamePlayer extends React.Component {
             }
 
             function Switch() {
-                var $computer = jquery('#computer');
-                var $deck = $computer.children().first();
-                $deck.remove();
-                $computer.children().after($deck);
+                //If the current state is OverWidth: false, then that means it is transitioning to OverWidth: true
                 
-                self.state.OverWidth = !self.state.OverWidth;
+                //Switch the state
+                    self.state.OverWidth = !self.state.OverWidth;
+
+                //Switch the decks (stateless)
+                    let $computer = jquery('#computer');
+                    let $deck = $computer.children().first();
+                    //Remove the first deck
+                    $deck.remove();
+                    //Then place the removed deck after the deck that used to be second
+                    $computer.children().after($deck);
+                                
+                //Switch the width style (state dependent)
+                    let $parent = $computer.parentsUntil('','.panel');
+                    $parent.css('width', !self.state.OverWidth ? '' : 'max-content');
             }
             
         };

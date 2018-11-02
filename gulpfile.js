@@ -1,6 +1,7 @@
 "use strict";
 
 var gulp = require('gulp'),
+    uglify = require('gulp-uglify'),
     less = require('gulp-less'),
     concat = require('gulp-concat'),
     minify = require('gulp-minify-css'),
@@ -11,49 +12,72 @@ var gulp = require('gulp'),
     lessify = require('lessify'),
     path = require('path'),
     source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer');
+    buffer = require('vinyl-buffer'),
+    babel = require("gulp-babel");
 
-var settings = {
-    source: './app',
-    publish: './test',
-    entry: 'test.js',
-    module: 'test.js',
-    //css: 'site.min.css',
-    get vendor() {
-        return this.publish + '/vendor';
+var bundles = {
+    main: {
+        source: './app',
+        entry: 'Components/GameOfWarPage.jsx',
+        publish: './',        
+        module: 'main.js'
+    },
+    test: {
+        source: './',
+        entry: 'test.js',
+        publish: './test',
+        module: 'index.js'
+    },
+    bundle: {
+        source: './app',
+        entry: '**/*.{js,jsx}',
+        publish: './dist',
+        module: 'bundle.js'
     }
 };
 
-//function css() {
+gulp.task('bundle.clean', function (cb) {
+    var bundle = bundles.bundle;
+    return rimraf(bundle.publish, cb);
+});
 
-//    var cssFiles = gulp.src(`${settings.source}/**/*.css`);
+gulp.task('bundle.build', function () {
+    var bundle = bundles.bundle;
+    let streams = [];
+    
+    streams.push(
+        gulp.src(`${bundle.source}/${bundle.entry}`)
+        .pipe(babel({
+            presets: ['@babel/env', '@babel/react']
+        }))
+        //.pipe(lessify())
+        //.pipe(concat(bundle.module))
+        .pipe(gulp.dest(bundle.publish))
+    );
 
-//    var lessFiles = gulp.src([`${settings.source}/**/*.less`])
-//        .pipe(less());
+    //streams.push(
+    //    gulp.src(`${bundle.source}/**/*.{less,png}`)
+    //    .pipe(gulp.dest(bundle.publish))
+    //);
 
-//    return merge(cssFiles, lessFiles)
-//        .pipe(minify())
-//        .pipe(concat(settings.css))
-//        .pipe(gulp.dest(settings.publish));
-//}
+    return merge(streams);
+});
 
-function scripts() {
+gulp.task('bundle', gulp.series('bundle.clean', 'bundle.build'));
+
+gulp.task('test', function () {
+    var bundle = bundles.test;
+
     var customOpts = {
-        entries: [`${settings.source}/${settings.entry}`]
+        entries: [`${bundle.source}/${bundle.entry}`]
     };
     var b = browserify(customOpts);
 
-    b.transform("babelify", { presets: ["env", "react"] });
+    b.transform("babelify", { presets: ['env', 'react'] });
     b.transform(lessify);
-    
+
     return b.bundle()
-        .pipe(source(settings.module))
+        .pipe(source(bundle.module))
         .pipe(buffer())
-        .pipe(gulp.dest(settings.publish));
-}
-
-gulp.task('test', () => {
-    return scripts();
+        .pipe(gulp.dest(bundle.publish));
 });
-
-//gulp.task('css', css);
