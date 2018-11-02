@@ -14,9 +14,9 @@
   "scripts": {
     "serve": "gulp bundle && npm run test",
     "test": "gulp test && start ./test/index.html && node ./resources/fileServer.js",
-    "publish_patch": "npm version patch && npm publish",
-    "publish_minor": "npm version minor && npm publish",
-    "publish_major": "npm version major && npm publish"
+    "publish_patch": "npm version patch && npm publish && git push",
+    "publish_minor": "npm version minor && npm publish && git push",
+    "publish_major": "npm version major && npm publish && git push"
   },
   "author": "Isaac Adams",
   "license": "ISC",
