@@ -11,8 +11,6 @@ var gulp = require('gulp'),
     browserify = require("browserify"),
     lessify = require('lessify'),
     path = require('path'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
     babel = require("gulp-babel");
 
 var bundles = {
@@ -77,7 +75,5 @@ gulp.task('test', function () {
     b.transform(lessify);
 
     return b.bundle()
-        .pipe(source(bundle.module))
-        .pipe(buffer())
-        .pipe(gulp.dest(bundle.publish));
+        .pipe(fs.createWriteStream(`${bundle.publish}/${bundle.module}`));
 });
