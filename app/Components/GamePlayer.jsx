@@ -43,13 +43,13 @@ export class GamePlayer extends React.Component {
             
         };
 
-        if(this.player.isComputer)
-            window.addEventListener('resize', this.ReorderComponents);
+        //if(this.player.isComputer)
+        //    window.addEventListener('resize', this.ReorderComponents);
     }
 
     componentDidMount() {        
-        if(this.player.isComputer)
-            this.ReorderComponents();
+        //if(this.player.isComputer)
+        //    this.ReorderComponents();
     }
 
     render() {

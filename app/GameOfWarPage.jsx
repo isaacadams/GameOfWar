@@ -30,9 +30,9 @@ class GameOfWarPage extends React.Component {
         var players = this.state.Game.players;
         var playerView = [];
 
-        for (var i = 0; i < players.length; i++) {
-            playerView.push(<GamePlayer player={players[i]} key={i} />);
-        }
+        players.forEach((player, i) => {
+            playerView.push(<GamePlayer player={player} key={i} />);
+        });        
 
         return (
             <div id="GameOfWar">

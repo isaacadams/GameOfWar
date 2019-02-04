@@ -215,16 +215,17 @@ function (_React$Component) {
         var $parent = $computer.parentsUntil('', '.panel');
         $parent.css('width', !self.state.OverWidth ? '' : 'max-content');
       }
-    };
+    }; //if(this.player.isComputer)
+    //    window.addEventListener('resize', this.ReorderComponents);
 
-    if (_this.player.isComputer) window.addEventListener('resize', _this.ReorderComponents);
+
     return _this;
   }
 
   _createClass(GamePlayer, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.player.isComputer) this.ReorderComponents();
+    value: function componentDidMount() {//if(this.player.isComputer)
+      //    this.ReorderComponents();
     }
   }, {
     key: "render",
@@ -384,14 +385,12 @@ function (_React$Component) {
     value: function render() {
       var players = this.state.Game.players;
       var playerView = [];
-
-      for (var i = 0; i < players.length; i++) {
+      players.forEach(function (player, i) {
         playerView.push(React.createElement(GamePlayer, {
-          player: players[i],
+          player: player,
           key: i
         }));
-      }
-
+      });
       return React.createElement("div", {
         id: "GameOfWar"
       }, React.createElement("div", {
@@ -41165,7 +41164,7 @@ function extend() {
 }
 
 },{}],67:[function(require,module,exports){
-var css = ".center-horizontal {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n.center-vertical {\n  top: 50%;\n  transform: translateY(-50%);\n  position: absolute;\n}\n.center {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\n.messageBox {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nbutton:focus {\n  outline: none;\n}\na {\n  color: black;\n  text-decoration: none;\n}\na :active {\n  color: none;\n}\na:hover {\n  color: lightseagreen;\n}\n#GameOfWar {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n#GameOfWar .status {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n  padding: 15px;\n}\n#GameOfWar .panel {\n  display: flex;\n  padding: 15px;\n  position: relative;\n}\n#GameOfWar .player {\n  display: inline-block;\n}\n#GameOfWar .CardStack {\n  position: relative;\n  padding: 15px 15px 15px 15px;\n  display: inline-block;\n}\n#GameOfWar .info {\n  z-index: 1;\n  height: 95px;\n  width: 100px;\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background-color: white;\n  background-size: auto 100%;\n  background-repeat: no-repeat;\n  background-position: left top;\n}\n.btn {\n  color: #000;\n  background: transparent;\n  border: 2px solid #000;\n  border-radius: 6px;\n  padding: 10px 20px;\n  text-align: center;\n  display: inline-block;\n  font-size: 12px;\n  margin: 4px 2px;\n  transition-duration: 0.4s;\n  cursor: pointer;\n  text-decoration: none;\n  text-transform: uppercase;\n  font-family: Lato;\n}\n.btn:hover {\n  background-color: #000;\n  color: white;\n}\n";(require('lessify'))(css); module.exports = css;
+var css = ".center-horizontal {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n.center-vertical {\n  top: 50%;\n  transform: translateY(-50%);\n  position: absolute;\n}\n.center {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\n.messageBox {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nbutton:focus {\n  outline: none;\n}\na {\n  color: black;\n  text-decoration: none;\n}\na :active {\n  color: none;\n}\na:hover {\n  color: lightseagreen;\n}\n#GameOfWar {\n  left: 50%;\n  transform: translateX(-50%);\n  position: absolute;\n}\n#GameOfWar .status {\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n  padding: 15px;\n}\n#GameOfWar .panel {\n  display: flex;\n  padding: 15px;\n  position: relative;\n}\n#GameOfWar .player {\n  display: flex;\n  flex-direction: column;\n}\n#GameOfWar .CardStack {\n  position: relative;\n  padding: 15px 15px 15px 15px;\n  display: inline-block;\n}\n#GameOfWar .info {\n  z-index: 1;\n  height: 95px;\n  width: 100px;\n  border: 2px solid #000000;\n  border-radius: 6px;\n  background-color: rgba(255, 255, 255, 0.9);\n  align-items: center;\n  text-align: center;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  position: absolute;\n}\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background-color: white;\n  background-size: auto 100%;\n  background-repeat: no-repeat;\n  background-position: left top;\n}\n.btn {\n  color: #000;\n  background: transparent;\n  border: 2px solid #000;\n  border-radius: 6px;\n  padding: 10px 20px;\n  text-align: center;\n  display: inline-block;\n  font-size: 12px;\n  margin: 4px 2px;\n  transition-duration: 0.4s;\n  cursor: pointer;\n  text-decoration: none;\n  text-transform: uppercase;\n  font-family: Lato;\n}\n.btn:hover {\n  background-color: #000;\n  color: white;\n}\n";(require('lessify'))(css); module.exports = css;
 },{"lessify":22}],68:[function(require,module,exports){
 'use strict';
 
