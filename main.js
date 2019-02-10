@@ -15,7 +15,7 @@ let { createFile } = require('./utilities');
 
 let e = module.exports;
 
-e.Render = function (dist) {
+e.CreateApp = function (dist) {
 
     //the config will tell me what their dist folder is
     //my output is the game script and pictures in a folder to be placed in their dist folder
