@@ -26,13 +26,13 @@ e.Render = function (dist) {
 };
 
 function MoveCardImages(publish) {
-    return gulp.src('app/images/playingcards/1x/**/*.png')
+    return gulp.src(getFullFilePath('app/images/playingcards/1x/**/*.png'))
         .pipe(gulp.dest(publish + '/playingcards'));
 }
 
 function CreateGameBundle(publish) {
     var bundle = {
-        source: 'app/scripts',
+        source: getFullFilePath('app/scripts'),
         entry: 'GameOfWarPage.jsx',
         publish: publish,
         module: 'index.js'
@@ -48,4 +48,12 @@ function CreateGameBundle(publish) {
     b.transform(lessify);
 
     return b.bundle().pipe(createFile(`${bundle.publish}/${bundle.module}`));
+}
+
+function getFullFilePath(directPathToFileFromRoot) {
+    // __filename is indeed the current file this function is being called from
+    let root = path.dirname(__filename);
+    // join root with the given path
+    let file = path.join(root, directPathToFileFromRoot);
+    return file;
 }
