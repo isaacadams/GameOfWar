@@ -1,6 +1,5 @@
 let React = require('react');
-let isNullOrUndefined = require('util').isNullOrUndefined;
-let http = require('http');
+var { isNullOrUndefined } = require('util');
 
 export const GameCard = (props) => {
     var suffix;
@@ -19,13 +18,15 @@ export const GameCard = (props) => {
         position: myPosition
     };
 
-    let options = {
-        host: 'localhost',
-        port: 3000,
-        path: '/?image=' + suffix
-    };
+    //let options = {
+    //    host: 'localhost',
+    //    port: 3000,
+    //    path: '/?image=' + suffix
+    //};
 
-    let src = `http://${options.host}:${options.port + options.path}`;
+    //let src = `http://${options.host}:${options.port + options.path}`;
+
+    let src = `gameofwar/playingcards/${suffix}.png`;
 
     return (
         <div style={css} >

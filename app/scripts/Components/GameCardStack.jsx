@@ -1,6 +1,6 @@
 var React = require('react');
-var isNullOrUndefined = require('util').isNullOrUndefined;
-var GameCard = require('./GameCard').GameCard;
+var { isNullOrUndefined } = require('util');
+var { GameCard } = require('./GameCard.jsx');
 
 export const GameCardStack = (props) => {
     var cards = [];

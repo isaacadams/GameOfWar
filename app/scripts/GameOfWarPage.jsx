@@ -1,9 +1,10 @@
-var less = require('./../resources/Styles/game.less');
-var React = require('react');
+var less = require('./../styles/game.less');
+import * as React from 'react';
 var ReactDOM = require('react-dom');
-var GameOfWar = require('./Logic/GameOfWar').GameOfWar;
-var GameButton = require('./Components/GameButton').GameButton;
-var GamePlayer = require('./Components/GamePlayer').GamePlayer;
+var { GameOfWar } = require('./Logic/GameOfWar');
+var { GameButton }= require('./Components/GameButton.jsx');
+var { GamePlayer } = require('./Components/GamePlayer.jsx');
+
 
 class GameOfWarPage extends React.Component {
     constructor() {
@@ -50,8 +51,10 @@ class GameOfWarPage extends React.Component {
     }
 }
 
-module.exports = {
-    Render: function (domId) {        
-        ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
-    }
-};
+ReactDOM.render(<GameOfWarPage />, document.getElementById('import_gameofwar'));
+
+//module.exports = {
+//    Render: function (domId) {        
+//        ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
+//    }
+//};

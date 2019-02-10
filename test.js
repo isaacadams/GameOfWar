@@ -1,2 +1,2 @@
 var gameofwar = require('./main');
-gameofwar.Render('gameofwar');
+gameofwar.Render('test');

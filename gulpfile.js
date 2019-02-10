@@ -14,12 +14,6 @@ var gulp = require('gulp'),
     babel = require("gulp-babel");
 
 var bundles = {
-    main: {
-        source: './app',
-        entry: 'Components/GameOfWarPage.jsx',
-        publish: './',        
-        module: 'main.js'
-    },
     test: {
         source: './',
         entry: 'test.js',
@@ -27,9 +21,9 @@ var bundles = {
         module: 'index.js'
     },
     bundle: {
-        source: './app',
-        entry: '**/*.{js,jsx}',
-        publish: './dist',
+        source: 'app',
+        entry: 'scripts/**/*.{js,jsx}',
+        publish: 'dist',
         module: 'bundle.js'
     }
 };
@@ -50,7 +44,7 @@ gulp.task('bundle.build', function () {
         }))
         //.pipe(lessify())
         //.pipe(concat(bundle.module))
-        .pipe(gulp.dest(bundle.publish))
+        .pipe(gulp.dest(bundle.publish + '/scripts'))
     );
 
     //streams.push(

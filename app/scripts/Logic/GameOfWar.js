@@ -1,4 +1,6 @@
-var cardgame = require('./CardGame');
+//var cardgame = require('./CardGame');
+import * as cardgame from './CardGame';
+
 var util = require('util');
 
 export class GameOfWar {

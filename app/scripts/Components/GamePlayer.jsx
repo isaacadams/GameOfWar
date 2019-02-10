@@ -1,5 +1,5 @@
-var GameCardStack = require('./GameCardStack').GameCardStack;
-var GamePlayerInfo = require('./GamePlayerInfo').GamePlayerInfo;
+var { GameCardStack } = require('./GameCardStack.jsx');
+var { GamePlayerInfo } = require('./GamePlayerInfo.jsx');
 var React = require('react');
 var jquery = require('jquery');
 
@@ -15,8 +15,9 @@ export class GamePlayer extends React.Component {
         };
 
         this.ReorderComponents = () => {
-            var self = this;
-            var trigger = self.player.isComputer && (window.innerWidth >= this.widthBoundary !== this.state.OverWidth);
+            let self = this;
+            let isOverWidth = window.innerWidth >= this.widthBoundary;
+            let trigger = self.player.isComputer && isOverWidth !== this.state.OverWidth;
 
             if (trigger) {
                 Switch();
@@ -43,8 +44,8 @@ export class GamePlayer extends React.Component {
             
         };
 
-        //if(this.player.isComputer)
-        //    window.addEventListener('resize', this.ReorderComponents);
+        if(this.player.isComputer)
+            window.addEventListener('resize', this.ReorderComponents);
     }
 
     componentDidMount() {        
@@ -63,7 +64,8 @@ export class GamePlayer extends React.Component {
 
         return (
             <div id={id} className="player">
-                {playerDeck}{playerStack}
+                {playerDeck}
+                {playerStack}
             </div>
         );
     }    
