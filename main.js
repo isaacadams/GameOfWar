@@ -1,15 +1,7 @@
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    less = require('gulp-less'),
-    concat = require('gulp-concat'),
-    minify = require('gulp-minify-css'),
-    merge = require('merge-stream'),
-    rimraf = require("rimraf"),
-    fs = require("fs"),
     browserify = require("browserify"),
     lessify = require('lessify'),
-    path = require('path'),
-    babel = require("gulp-babel");
+    path = require('path');
 
 let { createFile } = require('./utilities');
 

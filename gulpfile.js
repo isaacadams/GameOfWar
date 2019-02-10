@@ -1,10 +1,7 @@
 "use strict";
 
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    less = require('gulp-less'),
     concat = require('gulp-concat'),
-    minify = require('gulp-minify-css'),
     merge = require('merge-stream'),
     rimraf = require("rimraf"),
     fs = require("fs"),
