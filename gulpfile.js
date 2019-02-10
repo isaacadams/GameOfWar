@@ -1,70 +1,52 @@
-//"use strict";
+"use strict";
 
-//var gulp = require('gulp'),
-//    concat = require('gulp-concat'),
-//    merge = require('merge-stream'),
-//    rimraf = require("rimraf"),
-//    fs = require("fs"),
-//    browserify = require("browserify"),
-//    lessify = require('lessify'),
-//    path = require('path'),
-//    babel = require("gulp-babel");
+var gulp = require('gulp'),
+    concat = require('gulp-concat'),
+    merge = require('merge-stream'),
+    rimraf = require("rimraf"),
+    fs = require("fs"),
+    browserify = require("browserify"),
+    lessify = require('lessify'),
+    path = require('path');
 
-//var bundles = {
-//    test: {
-//        source: './',
-//        entry: 'test.js',
-//        publish: './test',
-//        module: 'index.js'
-//    },
-//    bundle: {
-//        source: 'app',
-//        entry: 'scripts/**/*.{js,jsx}',
-//        publish: 'dist',
-//        module: 'bundle.js'
-//    }
-//};
+let myPaths = {
+    source: 'app',
+    publish: 'gameofwar'
+};
 
-//gulp.task('bundle.clean', function (cb) {
-//    var bundle = bundles.bundle;
-//    return rimraf(bundle.publish, cb);
-//});
+function CreateGameBundle() {
+    let { createFile } = require('./utilities');
+    let bundle = {
+        source: `${myPaths.source}/scripts`,
+        entry: 'GameOfWarPage.jsx',
+        publish: myPaths.publish,
+        module: 'index.js'
+    };
 
-//gulp.task('bundle.build', function () {
-//    var bundle = bundles.bundle;
-//    let streams = [];
-    
-//    streams.push(
-//        gulp.src(`${bundle.source}/${bundle.entry}`)
-//        .pipe(babel({
-//            presets: ['@babel/env', '@babel/react']
-//        }))
-//        //.pipe(lessify())
-//        //.pipe(concat(bundle.module))
-//        .pipe(gulp.dest(bundle.publish + '/scripts'))
-//    );
+    var customOpts = {
+        entries: [`${bundle.source}/${bundle.entry}`]
+    };
+    var b = browserify(customOpts);
 
-//    //streams.push(
-//    //    gulp.src(`${bundle.source}/**/*.{less,png}`)
-//    //    .pipe(gulp.dest(bundle.publish))
-//    //);
+    b.transform("babelify", { presets: ['env', 'react'] });
+    b.transform(lessify);
 
-//    return merge(streams);
-//});
+    return b.bundle()
+        .pipe(createFile(`${bundle.publish}/${bundle.module}`));
+}
 
-//gulp.task('bundle', gulp.series('bundle.clean', 'bundle.build'));
+function MoveCardImages() {
+    return gulp.src(`${myPaths.source}/images/playingcards/1x/**/*.png`)
+        .pipe(gulp.dest(`${myPaths.publish}/playingcards`));
+}
 
-//gulp.task('test', function () {
-//    var bundle = bundles.test;
+gulp.task('app.clean', function (cb) {
+    return rimraf(myPaths.publish, cb);
+});
 
-//    var customOpts = {
-//        entries: [`${bundle.source}/${bundle.entry}`]
-//    };
-//    var b = browserify(customOpts);
+gulp.task('app.build', function () {
+    MoveCardImages();
+    return CreateGameBundle();
+});
 
-//    b.transform("babelify", { presets: ['env', 'react'] });
-//    b.transform(lessify);
-
-//    return b.bundle()
-//        .pipe(fs.createWriteStream(`${bundle.publish}/${bundle.module}`));
-//});
+gulp.task('app', gulp.series('app.clean', 'app.build'));

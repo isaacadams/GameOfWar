@@ -1,9 +1,6 @@
-var gulp = require('gulp'),
-    browserify = require("browserify"),
-    lessify = require('lessify'),
-    path = require('path');
-
-let { createFile } = require('./utilities');
+let r = require;
+let path = r('path'),
+    ncp = r('ncp');
 
 let e = module.exports;
 
@@ -11,36 +8,14 @@ e.CreateApp = function (dist) {
 
     //the config will tell me what their dist folder is
     //my output is the game script and pictures in a folder to be placed in their dist folder
-    let publish = dist + '/gameofwar';
-
-    CreateGameBundle(publish);
-    MoveCardImages(publish);
+    ncp(getFullFilePath('gameofwar'), `${dist}/gameofwar`, function (err) {
+        if (err) {
+            return console.error(err);
+        }
+        console.log('done!');
+    });
 };
 
-function MoveCardImages(publish) {
-    return gulp.src(getFullFilePath('app/images/playingcards/1x/**/*.png'))
-        .pipe(gulp.dest(publish + '/playingcards'));
-}
-
-function CreateGameBundle(publish) {
-    var bundle = {
-        source: getFullFilePath('app/scripts'),
-        entry: 'GameOfWarPage.jsx',
-        publish: publish,
-        module: 'index.js'
-    };
-
-    var customOpts = {
-        entries: [`${bundle.source}/${bundle.entry}`]
-    };
-    var b = browserify(customOpts);
-
-    
-    b.transform("babelify", { presets: ['env', 'react'] });
-    b.transform(lessify);
-
-    return b.bundle().pipe(createFile(`${bundle.publish}/${bundle.module}`));
-}
 
 function getFullFilePath(directPathToFileFromRoot) {
     // __filename is indeed the current file this function is being called from
