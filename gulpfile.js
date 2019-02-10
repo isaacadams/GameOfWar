@@ -15,7 +15,8 @@ let myPaths = {
 };
 
 function CreateGameBundle() {
-    let { createFile } = require('./utilities');
+    let { createFile } = require('@isaacadams/nodejs-utils');
+
     let bundle = {
         source: `${myPaths.source}/scripts`,
         entry: 'GameOfWarPage.jsx',
