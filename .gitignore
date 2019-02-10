@@ -4,7 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # custom
-dist/
+test/gameofwar
+
 
 # User-specific files
 *.suo
