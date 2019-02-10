@@ -24,24 +24,24 @@
     "jquery": "^3.3.1",
     "jsx": "^0.9.89",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "gulp": "^4.0.0",
+    "browserify": "^16.2.2",
+    "lessify": "1.0.2",
+    "babelify": "^8.0.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "^6.24.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
     "cors": "2.8.5",
     "express": "4.16.4",
-    "gulp": "^4.0.0",
     "gulp-babel": "8.0.0",
     "gulp-concat": "^2.6.1",
     "less": "^3.8.1",
-    "lessify": "1.0.2",
     "merge-stream": "^1.0.1",
     "rimraf": "2.6.2"
   }
