@@ -53,7 +53,7 @@ var GameCard = exports.GameCard = function GameCard(props) {
 
     //let src = `http://${options.host}:${options.port + options.path}`;
 
-    var src = 'gameofwar/playingcards/' + suffix + '.png';
+    var src = 'playingcards/' + suffix + '.png';
 
     return React.createElement(
         'div',

@@ -14,7 +14,7 @@ let myPaths = {
     publish: 'gameofwar'
 };
 
-function CreateGameBundle() {
+function CreateGameBundle(cb) {
     let { createFile } = require('@isaacadams/nodejs-utils');
 
     let bundle = {
@@ -32,8 +32,10 @@ function CreateGameBundle() {
     b.transform("babelify", { presets: ['env', 'react'] });
     b.transform(lessify);
 
-    return b.bundle()
+    b.bundle()
         .pipe(createFile(`${bundle.publish}/${bundle.module}`));
+
+    return cb();
 }
 
 function MoveCardImages() {
@@ -41,13 +43,35 @@ function MoveCardImages() {
         .pipe(gulp.dest(`${myPaths.publish}/playingcards`));
 }
 
+function createIndexHtmlFile(cb) {
+
+    let create = fs.createWriteStream(`${myPaths.publish}/index.html`);
+
+    create.write(
+        `<html>
+<body>    
+    <div id="import_gameofwar"></div>
+</body>
+</html>
+
+<footer>
+    <script src="index.js"></script>
+</footer>`
+    );
+
+    create.close();
+
+    return cb();
+}
+
 gulp.task('app.clean', function (cb) {
     return rimraf(myPaths.publish, cb);
 });
 
-gulp.task('app.build', function () {
-    MoveCardImages();
-    return CreateGameBundle();
-});
+gulp.task('app.images', MoveCardImages);
+gulp.task('app.bundle', CreateGameBundle);
+gulp.task('app.index', createIndexHtmlFile);
 
-gulp.task('app', gulp.series('app.clean', 'app.build'));
+gulp.task('app.build', gulp.parallel('app.images', 'app.bundle'));
+
+gulp.task('app', gulp.series('app.clean', 'app.build', 'app.index'));
