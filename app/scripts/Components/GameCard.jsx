@@ -26,7 +26,7 @@ export const GameCard = (props) => {
 
     //let src = `http://${options.host}:${options.port + options.path}`;
 
-    let src = `gameofwar/playingcards/${suffix}.png`;
+    let src = `playingcards/${suffix}.png`;
 
     return (
         <div style={css} >
