@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "gulp app",
-    "test": "node test.js && http-server ./test -p 1000 -o -c-1",
+    "test": "http-server ./gameofwar -p 1000 -o -c-1",
     "publish_patch": "npm version patch && npm publish && git push",
     "publish_minor": "npm version minor && npm publish && git push",
     "publish_major": "npm version major && npm publish && git push"
