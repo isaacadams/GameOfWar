@@ -1,9 +1,15 @@
 # Game Of War
-a web simulation of the classic card game of war
+A web simulation of the classic card game of war
 
-How to use?
+#### How to play?
 
-The game of war app must be generated as part of your app's build process before being used.
+The game is hosted through firebase and can be played at [this link](https://cards-gameofwar.web.app/).
+
+*Eventually* the game can be installed through npm and referenced through html and javascript. Currently, it doesn't work, but when it does, you would follow the instructions below.
+
+#### How to use?
+
+The game of war app can be generated as part of your app's build process before being used.
 
 To build the app, write the following code in some javascript file:
 ```javascript
