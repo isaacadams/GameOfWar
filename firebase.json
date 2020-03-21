@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "gameofwar",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
