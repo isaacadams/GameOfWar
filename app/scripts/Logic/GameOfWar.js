@@ -61,7 +61,7 @@ export class GameOfWar {
         return this.players[0];
     }
 
-    save(message, draw) {
+    save(message, draw = null) {
         this.saveState = {
             Game: this,
             Message: message,

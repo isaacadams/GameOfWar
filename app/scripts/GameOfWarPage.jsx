@@ -1,15 +1,15 @@
 require('../styles/game.less');
-
 import * as React from 'react';
 var ReactDOM = require('react-dom');
-var { GameOfWar } = require('./Logic/GameOfWar');
+
+import { GameOfWar } from './Logic/GameOfWar';
 var { GameButton }= require('./Components/GameButton.jsx');
 var { GamePlayer } = require('./Components/GamePlayer.jsx');
 
 
 class GameOfWarPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         
         var Game = new GameOfWar();
 
