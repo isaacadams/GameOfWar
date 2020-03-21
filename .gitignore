@@ -63,3 +63,9 @@ node_modules/
 *.sqlite
 /dir/vendor/
 .vs/slnx.sqlite
+
+## parcel
+.cache
+
+## build artifacts
+dist

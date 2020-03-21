@@ -12,8 +12,8 @@
     "url": "https://github.com/isaacadams/gameofwar.git"
   },
   "scripts": {
-    "build": "gulp app",
-    "test": "http-server ./gameofwar -p 1000 -o -c-1",
+    "dev": "gulp app && parcel app/index.html",
+    "build": "gulp app && parcel build app/index.html",
     "publish_patch": "npm version patch && npm publish && git push",
     "publish_minor": "npm version minor && npm publish && git push",
     "publish_major": "npm version major && npm publish && git push"
@@ -24,27 +24,16 @@
     "ncp": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "@isaacadams/nodejs-utils": "0.1.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
+    "@isaacadams/nodejs-utils": "0.2.0",
     "cors": "2.8.5",
-    "express": "4.16.4",
-    "gulp": "^4.0.0",
-    "gulp-babel": "8.0.0",
-    "gulp-concat": "^2.6.1",
+    "express": "4.17.1",
+    "gulp": "^4.0.2",
     "jquery": "^3.4.1",
     "jsx": "^0.9.89",
-    "less": "^3.8.1",
-    "lessify": "1.0.2",
-    "merge-stream": "^1.0.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "rimraf": "2.6.2"
+    "less": "^3.11.1",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rimraf": "3.0.2"
   }
 }
