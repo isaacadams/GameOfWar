@@ -1,4 +1,6 @@
+import { Player } from './Player';
 import { Card } from './Card';
+
 export class Deck {
     constructor() {
         this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
@@ -14,6 +16,11 @@ export class Deck {
     shuffle() {
         this.cards.sort(function (a, b) { return 0.5 - Math.random(); });
     }
+    /**
+     * 
+     * @param {Player[]} players players in game
+     * @param {number} numOfCardsPerHand number of cards per hand
+     */
     deal(players, numOfCardsPerHand) {
         for (var i = 0; i < players.length; i++) {
             for (var c = 0; c < numOfCardsPerHand; c++) {

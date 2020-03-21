@@ -12,6 +12,10 @@ export class Player {
         this.viewStack = [];
     }
     
+    /**
+     * Add card to player's hand
+     * @param {Card} card 
+     */
     add(card) {
         this.hand.enqueue(card);
     }
