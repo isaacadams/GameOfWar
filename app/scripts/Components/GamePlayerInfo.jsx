@@ -1,4 +1,4 @@
-var React = require('react');
+import * as React from 'react';
 
 export const GamePlayerInfo = (props) => {
     var player = props.player;

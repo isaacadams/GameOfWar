@@ -1,6 +1,6 @@
-var { GameCardStack } = require('./GameCardStack.jsx');
-var { GamePlayerInfo } = require('./GamePlayerInfo.jsx');
-var React = require('react');
+import * as React from 'react';
+import { GameCardStack } from './GameCardStack.jsx';
+import { GamePlayerInfo } from './GamePlayerInfo.jsx';
 var jquery = require('jquery');
 
 export class GamePlayer extends React.Component {

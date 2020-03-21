@@ -1,4 +1,4 @@
-let React = require('react');
+import * as React from 'react';
 var { isNullOrUndefined } = require('util');
 
 export const GameCard = (props) => {

@@ -1,4 +1,4 @@
-var React = require('react');
+import * as React from 'react';
 var { isNullOrUndefined } = require('util');
 var { GameCard } = require('./GameCard.jsx');
 
