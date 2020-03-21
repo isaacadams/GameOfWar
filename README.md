@@ -5,4 +5,9 @@ A web simulation of the classic card game of war
 
 The game is hosted through firebase and can be played at [this link](https://cards-gameofwar.web.app/).
 
-*Eventually* the game can be installed through npm and referenced through html and javascript. Currently, it doesn't work, but when it does, you would follow the instructions below.
+
+### Dev Notes
+
+Running App Locally: `npm run dev`
+Build & Deplpy: `npm run build && npm run deploy`
+Update Version: `npm version (patch|minor|major)`
