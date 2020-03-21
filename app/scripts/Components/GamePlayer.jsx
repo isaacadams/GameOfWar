@@ -48,11 +48,6 @@ export class GamePlayer extends React.Component {
             window.addEventListener('resize', this.ReorderComponents);
     }
 
-    componentDidMount() {        
-        //if(this.player.isComputer)
-        //    this.ReorderComponents();
-    }
-
     render() {
         var player = this.player;
         var info = <GamePlayerInfo player={player} />;
