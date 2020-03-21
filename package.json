@@ -13,7 +13,8 @@
   },
   "scripts": {
     "dev": "gulp app && parcel app/index.html",
-    "build": "gulp app && parcel build app/index.html"
+    "build": "gulp app && parcel build app/index.html",
+    "deploy": "firebase deploy"
   },
   "author": "Isaac Adams",
   "license": "ISC",
