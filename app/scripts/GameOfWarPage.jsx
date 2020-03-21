@@ -1,4 +1,5 @@
-var less = require('./../styles/game.less');
+require('../styles/game.less');
+
 import * as React from 'react';
 var ReactDOM = require('react-dom');
 var { GameOfWar } = require('./Logic/GameOfWar');
