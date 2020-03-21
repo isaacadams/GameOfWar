@@ -1,13 +1,13 @@
-import * as Player from "./Player";
-import * as Deck from "./Deck";
+import { Player } from "./Player";
+import { Deck } from "./Deck";
 
 var util = require('util');
 
 export class GameOfWar {
     constructor() {
-        this.players = [new Player.Player(false), new Player.Player(true)];
+        this.players = [new Player(false), new Player(true)];
 
-        this.theDeck = new Deck.Deck();
+        this.theDeck = new Deck();
         this.theDeck.deal(this.players, 26);
         this.saveState = {};
         this.gameOver = false;
