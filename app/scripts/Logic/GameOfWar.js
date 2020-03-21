@@ -1,13 +1,13 @@
-//var cardgame = require('./CardGame');
-import * as cardgame from './CardGame';
+import * as Player from "./Player";
+import * as Deck from "./Deck";
 
 var util = require('util');
 
 export class GameOfWar {
     constructor() {
-        this.players = [new cardgame.Player(false), new cardgame.Player(true)];
+        this.players = [new Player.Player(false), new Player.Player(true)];
 
-        this.theDeck = new cardgame.Deck();
+        this.theDeck = new Deck.Deck();
         this.theDeck.deal(this.players, 26);
         this.saveState = {};
         this.gameOver = false;
