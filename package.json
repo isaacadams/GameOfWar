@@ -13,20 +13,11 @@
   },
   "scripts": {
     "dev": "gulp app && parcel app/index.html",
-    "build": "gulp app && parcel build app/index.html",
-    "publish_patch": "npm version patch && npm publish && git push",
-    "publish_minor": "npm version minor && npm publish && git push",
-    "publish_major": "npm version major && npm publish && git push"
+    "build": "gulp app && parcel build app/index.html"
   },
   "author": "Isaac Adams",
   "license": "ISC",
-  "dependencies": {
-    "ncp": "2.0.0"
-  },
   "devDependencies": {
-    "@isaacadams/nodejs-utils": "0.2.0",
-    "cors": "2.8.5",
-    "express": "4.17.1",
     "gulp": "^4.0.2",
     "jquery": "^3.4.1",
     "jsx": "^0.9.89",
