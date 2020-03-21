@@ -18,14 +18,6 @@ export const GameCard = (props) => {
         position: myPosition
     };
 
-    //let options = {
-    //    host: 'localhost',
-    //    port: 3000,
-    //    path: '/?image=' + suffix
-    //};
-
-    //let src = `http://${options.host}:${options.port + options.path}`;
-
     let src = `playingcards/${suffix}.png`;
 
     return (

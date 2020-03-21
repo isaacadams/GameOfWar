@@ -53,9 +53,3 @@ class GameOfWarPage extends React.Component {
 }
 
 ReactDOM.render(<GameOfWarPage />, document.getElementById('import_gameofwar'));
-
-//module.exports = {
-//    Render: function (domId) {        
-//        ReactDOM.render(<GameOfWarPage />, document.getElementById(domId));
-//    }
-//};
