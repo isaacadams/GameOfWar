@@ -8,6 +8,6 @@ The game is hosted through firebase and can be played at [this link](https://car
 
 ### Dev Notes
 
-Running App Locally: `npm run dev`
-Build & Deplpy: `npm run build && npm run deploy`
-Update Version: `npm version (patch|minor|major)`
+- Running App Locally: `npm run dev`
+- Build & Deplpy: `npm run build && npm run deploy`
+- Update Version: `npm version (patch|minor|major)`
