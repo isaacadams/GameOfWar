@@ -3,7 +3,7 @@ export function randomlyRemoveItemsFromArray(array, numberToRemove){
 
     while(itemsRemoved.length < numberToRemove) {
         let indexToGetItem = getRandomInt(0, array.length - 1);
-        itemsRemoved = [ ...itemsRemoved, ...array.splice(indexToGetItem, 1)];
+        itemsRemoved = itemsRemoved.concat(array.splice(indexToGetItem, 1));
     }
 
     return itemsRemoved;
