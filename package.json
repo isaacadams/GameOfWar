@@ -12,6 +12,7 @@
     "url": "https://github.com/isaacadams/gameofwar.git"
   },
   "scripts": {
+    "test": "jest",
     "dev": "gulp app && parcel app/index.html",
     "build": "gulp app && parcel build app/index.html",
     "deploy": "firebase deploy"
@@ -19,7 +20,10 @@
   "author": "Isaac Adams",
   "license": "ISC",
   "devDependencies": {
+    "babel-jest": "^25.1.0",
+    "babel-preset-env": "^1.7.0",
     "gulp": "^4.0.2",
+    "jest": "^25.1.0",
     "jquery": "^3.4.1",
     "jsx": "^0.9.89",
     "less": "^3.11.1",
