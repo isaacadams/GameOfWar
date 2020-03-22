@@ -18,7 +18,7 @@ export class GameOfWar {
 
     draw(numberOfCardsToDraw) {
 
-        numberOfCardsToDraw = this.checkCardsInHand(numberOfCardsToDraw);
+        numberOfCardsToDraw = Math.min(numberOfCardsToDraw, ...this.players.map(p => p.hand.length));
 
         this.computer.draw(numberOfCardsToDraw);
         this.user.draw(numberOfCardsToDraw);
@@ -70,22 +70,5 @@ export class GameOfWar {
             Message: message,
             Draw: util.isNullOrUndefined(draw) ? 1 : draw
         };
-    }
-
-    checkCardsInHand(numberOfCardsToDraw) {
-        //Check to see if a player doesn't have enough cards to draw
-        for (var i = 0; i < this.players.length; i++) {
-            var player = this.players[i];
-            var cardsInHand = player.hand.length;
-
-            if (cardsInHand < numberOfCardsToDraw) {
-                numberOfCardsToDraw = cardsInHand;
-
-                //If this player's hand has less cards, then we don't need to check the other player since it is impossible that they would also have less than the required amount
-                break;
-            }
-        }
-
-        return numberOfCardsToDraw;
     }
 }
