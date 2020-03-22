@@ -8,7 +8,10 @@ export class GameOfWar {
         this.players = [new Player(false), new Player(true)];
 
         this.theDeck = new Deck();
-        this.theDeck.deal(this.players, 26);
+        
+        this.theDeck.dealCards(26).forEach(c => this.user.add(c));
+        this.theDeck.dealCards(26).forEach(c => this.computer.add(c));
+
         this.saveState = {};
         this.gameOver = false;
     }

@@ -1,5 +1,5 @@
-import { Player } from './Player';
 import { Card } from './Card';
+import { getRandomInt, randomlyRemoveItemsFromArray } from './Common';
 
 export class Deck {
     constructor() {
@@ -13,19 +13,16 @@ export class Deck {
         }
         this.shuffle();
     }
+
     shuffle() {
         this.cards.sort(function (a, b) { return 0.5 - Math.random(); });
     }
+
     /**
-     * 
-     * @param {Player[]} players players in game
      * @param {number} numOfCardsPerHand number of cards per hand
+     * @returns {Card[]} deals out the number of cards specified
      */
-    deal(players, numOfCardsPerHand) {
-        for (var i = 0; i < players.length; i++) {
-            for (var c = 0; c < numOfCardsPerHand; c++) {
-                players[i].add(this.cards.pop());
-            }
-        }
+    dealCards(numOfCardsPerHand) {        
+        return randomlyRemoveItemsFromArray(this.cards, numOfCardsPerHand);
     }
 }
