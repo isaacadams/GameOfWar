@@ -1,5 +1,5 @@
 import { Card } from './Card';
-import { getRandomInt, randomlyRemoveItemsFromArray } from './Common';
+import '@isaacadams/extensions';
 
 export class Deck {
     constructor() {
@@ -22,7 +22,7 @@ export class Deck {
      * @param {number} numOfCardsPerHand number of cards per hand
      * @returns {Card[]} deals out the number of cards specified
      */
-    dealCards(numOfCardsPerHand) {        
-        return randomlyRemoveItemsFromArray(this.cards, numOfCardsPerHand);
+    dealCards(numOfCardsPerHand) {
+        return this.cards.takeRandomly(numOfCardsPerHand);
     }
 }

@@ -1,4 +1,8 @@
-import { getRandomInt, randomlyRemoveItemsFromArray } from '../app/scripts/Logic/Common';
+import { getRandomInt } from '@isaacadams/extensions';
+import { Card } from '../app/scripts/Logic/Card';
+
+// https://jestjs.io/docs/en/api
+
 
 expect.extend({
     toBeWithinRange(received, floor, ceiling) {
@@ -19,15 +23,6 @@ expect.extend({
     }
 });
 
-test('some random integer should fall in the range of 5 to 32', () => {
-    expect(getRandomInt(5, 32)).toBeWithinRange(5, 32);
-});
-
-test('some random integer should NOT fall in the range of 101 to 100', () => {
-    expect(getRandomInt(-5, 100)).not.toBeWithinRange(101, 1000);    
-});
-
-test('removes 4 items from an array of 6 items and the result should have a length of 4', () => {
-    let result = randomlyRemoveItemsFromArray([ 1, 2, 3, 4, 5, 6 ], 4);
-    expect(result.length).toBe(4);
+test('new card has a value of 0', () => {
+    expect(new Card().value).toEqual(undefined);
 });
