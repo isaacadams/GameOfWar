@@ -17,7 +17,7 @@ export class GameOfWar {
     }
 
     draw(numberOfCardsToDraw) {
-
+        // should not draw a number of cards that exceeds the amount contained in a player's hand
         numberOfCardsToDraw = Math.min(numberOfCardsToDraw, ...this.players.map(p => p.hand.length));
 
         this.computer.draw(numberOfCardsToDraw);
@@ -25,23 +25,26 @@ export class GameOfWar {
 
         if (this.computer.cardInPlay.value > this.user.cardInPlay.value) {
             this.win(this.computer, this.user, "Computer won this round.");
-        } else
-            if (this.computer.cardInPlay.value < this.user.cardInPlay.value) {
-                this.win(this.user, this.computer, "You won this round!");
-            }
-            else { //Then it must be a tie
-                this.save("War!", 3);
+            return;
+        }
 
-                //Keeps cards in the stack while putting them in the view card stack
-                for (var i = 0; i < this.players.length; i++) {
-                    var player = this.players[i];
-                    player.viewStack = [];
-                    for (var s = 0; s < player.stack.length; s++) {
-                        var card = player.stack[s];
-                        player.viewStack.push(card);
-                    }
-                }
+        if (this.computer.cardInPlay.value < this.user.cardInPlay.value) {
+            this.win(this.user, this.computer, "You won this round!");
+            return;
+        }
+
+        //Then it must be a tie
+        this.save("War!", 3);
+
+        //Keeps cards in the stack while putting them in the view card stack
+        for (var i = 0; i < this.players.length; i++) {
+            var player = this.players[i];
+            player.viewStack = [];
+            for (var s = 0; s < player.stack.length; s++) {
+                var card = player.stack[s];
+                player.viewStack.push(card);
             }
+        }
     }
 
     win(winner, loser, roundMessage) {
