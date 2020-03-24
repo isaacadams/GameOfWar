@@ -1,15 +1,15 @@
 import * as React from 'react';
 var { isNullOrUndefined } = require('util');
 
-export const GameCard = (props) => {
+export function GameCard({ card, back, index }) {
     var suffix;
 
-    if (isNullOrUndefined(props.card))
-        suffix = props.back ? 'back' : 'card-base';
+    if (isNullOrUndefined(card))
+        suffix = back ? 'back' : 'card-base';
     else
-        suffix = props.card.suit + '_' + props.card.name;
+        suffix = card.suit + '_' + card.name;
 
-    var index = isNullOrUndefined(props.index) ? 0 : props.index;
+    var index = isNullOrUndefined(index) ? 0 : index;
     var myPosition = index === 0 ? "relative" : "absolute";
 
     let css = {
