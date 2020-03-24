@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CardView } from './CardView.jsx';
 import { GameCardStack } from './GameCardStack.jsx';
 import { GamePlayerInfo } from './GamePlayerInfo.jsx';
 import { CardBack } from '../Logic/Card.js';
@@ -22,7 +23,7 @@ export class GamePlayer extends React.Component {
             <div className="player" style={css}>                
                 <div className="CardStack">
                     <GamePlayerInfo player={player} />
-                    <GameCard card={new CardBack()} />
+                    <CardView card={new CardBack()} />
                 </div>
                 <GameCardStack stack={player.viewStack} />                
             </div>
