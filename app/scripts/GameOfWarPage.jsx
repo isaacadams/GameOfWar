@@ -10,43 +10,32 @@ var { GamePlayer } = require('./Components/GamePlayer.jsx');
 class GameOfWarPage extends React.Component {
     constructor(props) {
         super(props);
-        
-        var Game = new GameOfWar();
 
         this.state = {
-            Game: Game,
+            Game: new GameOfWar(),
             Message: 'Click "Deal" to begin the game',
             Draw: 1
         };
+    }
 
-        this.handleClick = (event) => {
-            var game = this.state.Game;
-            if (!game.gameOver) {
-                game.draw(this.state.Draw);
-                this.setState(game.saveState);
-            }
-        };
+    handleClick(event) {
+        var game = this.state.Game;
+        if (!game.gameOver) {
+            game.draw(this.state.Draw);
+            this.setState(game.saveState);
+        }
     }
 
     render() {
-        var players = this.state.Game.players;
-        var playerView = [];
-
-        players.forEach((player, i) => {
-            playerView.push(<GamePlayer player={player} key={i} />);
-        });        
-
         return (
             <div id="GameOfWar">
-                
                 <div className="panel">
-                    <GameButton content="Deal" onClick={this.handleClick} />
+                    <GameButton content="Deal" onClick={e => this.handleClick(e)} />
                     <div className="status">{this.state.Message}</div>
                 </div>
                 <div className="panel">
-                    {playerView}
+                    {this.state.Game.players.map((p, i) => <GamePlayer player={p} key={i} />)}
                 </div>
-
             </div>
         );
     }
