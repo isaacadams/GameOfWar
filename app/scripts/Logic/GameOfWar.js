@@ -6,14 +6,32 @@ var util = require('util');
 export class GameOfWar {
     constructor() {
         this.players = [new Player(false), new Player(true)];
-
-        this.theDeck = new Deck();
         
-        this.theDeck.dealCards(26).forEach(c => this.user.add(c));
-        this.theDeck.dealCards(26).forEach(c => this.computer.add(c));
+        this.state = {
+            gameOver: false,
+            cardsToDraw: 1,
+            roundMessage: 'Click "Deal" to begin the game',
+            buttonMessage: "Deal"
+        };
 
-        this.saveState = {};
-        this.gameOver = false;
+        this.dealCardsToPlayers();
+        this.previousRoundsQueue = [];
+    }
+
+    dealCardsToPlayers() {
+        let deckOfCards = new Deck();
+        deckOfCards.dealCards(26).forEach(c => this.user.add(c));
+        deckOfCards.dealCards(26).forEach(c => this.computer.add(c));
+    }
+
+    nextRound() {
+        
+        while (!this.previousRoundsQueue || this.previousRoundsQueue.length > 0){
+            let previousRoundAction = this.previousRoundsQueue.pop();
+            previousRoundAction();
+        }
+
+        this.draw(this.state.cardsToDraw);
     }
 
     draw(numberOfCardsToDraw) {
@@ -34,29 +52,30 @@ export class GameOfWar {
         }
 
         //Then it must be a tie
-        this.save("War!", 3);
-
-        //Keeps cards in the stack while putting them in the view card stack
-        for (var i = 0; i < this.players.length; i++) {
-            var player = this.players[i];
-            player.viewStack = [];
-            for (var s = 0; s < player.stack.length; s++) {
-                var card = player.stack[s];
-                player.viewStack.push(card);
-            }
-        }
+        this.state = {
+            ...this.state,
+            roundMessage: "War!",
+            cardsToDraw: 3
+        };
     }
 
-    win(winner, loser, roundMessage) {
-        winner.transferStack(winner.hand);
-        loser.transferStack(winner.hand);
+    win(winner, loser, roundMessage) {        
+        this.previousRoundsQueue.push(() => {
+            winner.transferStack(winner.hand);
+            loser.transferStack(winner.hand);
+        });
 
         if (loser.hand.length <= 0) {
-            roundMessage = winner.name + " has won the game!";
-            this.gameOver = true;
+            this.state.roundMessage = winner.name + " has won the game!";
+            this.state.gameOver = true;
+            return;
         }
-
-        this.save(roundMessage);
+        
+        this.state = {
+            ...this.state,
+            roundMessage,
+            cardsToDraw: 1
+        };
     }
 
     get computer() {
@@ -65,13 +84,5 @@ export class GameOfWar {
 
     get user() {
         return this.players[0];
-    }
-
-    save(message, draw = null) {
-        this.saveState = {
-            Game: this,
-            Message: message,
-            Draw: util.isNullOrUndefined(draw) ? 1 : draw
-        };
     }
 }

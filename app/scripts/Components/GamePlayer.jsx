@@ -25,7 +25,7 @@ export class GamePlayer extends React.Component {
                     <GamePlayerInfo player={player} />
                     <CardView card={new CardBack()} />
                 </div>
-                <GameCardStack stack={player.viewStack} />                
+                <GameCardStack stack={player.stack} />
             </div>
         );
     }    

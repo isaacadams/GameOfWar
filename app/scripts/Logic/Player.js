@@ -9,7 +9,6 @@ export class Player {
 
         this.hand = new Queue();
         this.stack = [];
-        this.viewStack = [];
     }
     
     /**
@@ -25,17 +24,11 @@ export class Player {
             this.stack.push(this.hand.dequeue());
         }
     }
-
-    hasStack() {
-        return !!this.viewStack && this.viewStack.length > 0;
-    }
     
     transferStack(queue) {
-        this.viewStack = [];
         var length = this.stack.length;
         for (var i = 0; i < length; i++) {
             var card = this.stack.pop();
-            this.viewStack.unshift(card);
             queue.enqueue(card);
         }
     }
