@@ -24,7 +24,6 @@
     "babel-preset-env": "^1.7.0",
     "gulp": "^4.0.2",
     "jest": "^25.1.0",
-    "jquery": "^3.4.1",
     "jsx": "^0.9.89",
     "less": "^3.11.1",
     "parcel-bundler": "^1.12.4",
