@@ -26,10 +26,8 @@ export class Player {
     }
     
     transferStack(queue) {
-        var length = this.stack.length;
-        for (var i = 0; i < length; i++) {
-            var card = this.stack.pop();
-            queue.enqueue(card);
+        while (!this.stack || this.stack.length > 0){
+            queue.enqueue(this.stack.pop());
         }
     }
     
