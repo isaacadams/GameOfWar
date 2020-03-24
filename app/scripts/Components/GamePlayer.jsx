@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { GameCardStack } from './GameCardStack.jsx';
 import { GamePlayerInfo } from './GamePlayerInfo.jsx';
-import { GameCard } from './GameCard.jsx';
 import { CardBack } from '../Logic/Card.js';
 
 export class GamePlayer extends React.Component {
@@ -25,7 +24,7 @@ export class GamePlayer extends React.Component {
                     <GamePlayerInfo player={player} />
                     <GameCard card={new CardBack()} />
                 </div>
-                <GameCardStack stack={player.viewStack} />
+                <GameCardStack stack={player.viewStack} />                
             </div>
         );
     }    

@@ -25,6 +25,10 @@ export class Player {
             this.stack.push(this.hand.dequeue());
         }
     }
+
+    hasStack() {
+        return !!this.viewStack && this.viewStack.length > 0;
+    }
     
     transferStack(queue) {
         this.viewStack = [];

@@ -1,22 +1,28 @@
 import * as React from 'react';
-import { CardBack, CardBase } from '../Logic/Card.js';
-var { isNullOrUndefined } = require('util');
-var { GameCard } = require('./GameCard.jsx');
+import { CardBase } from '../Logic/Card.js';
+var { CardView } = require("./CardView.jsx");
 
 export function GameCardStack ({ stack }) {
-    var cards = [];
-    var emptyStack = isNullOrUndefined(stack) || stack.length === 0;
-
-    if (emptyStack) {
-        cards.push(<GameCard key={0} index={0} card={new CardBase()} />);
-    }
-    else {
-        cards = stack.map((card, i) => <GameCard key={i} index={i} card={card} />)
-    }
-
     return (
         <div className="CardStack">
-            {cards}
+            {getCardView(stack)}
         </div>
     );
 };
+
+function getCardView(stack) {
+    
+    if(!stack || stack.length < 1) return <CardView card={new CardBase()} />;
+
+    if(stack.length === 1) return <CardView card={stack[0]} />;
+
+    return stack.map((card, i) => 
+        <CardView key={i} card={card} 
+            style={{ 
+                zIndex: i,
+                top: i + i * 70,
+                position: i > 0 ? "absolute" : "relative"
+            }} 
+        />
+    );
+}
