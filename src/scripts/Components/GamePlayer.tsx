@@ -4,30 +4,21 @@ import { GameCardStack } from './GameCardStack.jsx';
 import { GamePlayerInfo } from './GamePlayerInfo.jsx';
 import { CardBack } from '../Logic/Card.js';
 
-export class GamePlayer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.widthBoundary = 1660;
-    }
+export function GamePlayer({player}) {
+    let widthBoundary = 1660;
+    let css = {
+        display: "flex"
+    };
 
-    render() {
-        var { player } = this.props;
-        
-        let css = {
-            display: "flex"
-        };
+    if(player.isComputer) css["flexDirection"] = "row-reverse";
 
-        if(player.isComputer) css["flexDirection"] = "row-reverse";
-
-        return (
-            <div className="player" style={css}>                
-                <div className="CardStack">
-                    <GamePlayerInfo player={player} />
-                    <CardView card={new CardBack()} />
-                </div>
-                <GameCardStack stack={player.stack} />
+    return (
+        <div className="player" style={css}>
+            <div className="CardStack">
+                <GamePlayerInfo player={player} />
+                <CardView card={new CardBack()} />
             </div>
-        );
-    }    
-    
+            <GameCardStack stack={player.stack} />
+        </div>
+    );
 }
