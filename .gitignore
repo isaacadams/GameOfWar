@@ -65,7 +65,7 @@ node_modules/
 .vs/slnx.sqlite
 
 ## parcel
-.cache
+.parcel-cache
 
 ## build artifacts
 dist
