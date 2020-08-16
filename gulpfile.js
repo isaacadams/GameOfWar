@@ -9,7 +9,7 @@ let myPaths = {
 };
 
 function MoveCardImages(cb) {
-    gulp.src(`${myPaths.source}/images/playingcards/1x/**/*.png`)
+    gulp.src(`./images/playingcards/1x/**/*.png`)
         .pipe(gulp.dest(`${myPaths.publish}/playingcards`));
     
     return cb();
