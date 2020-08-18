@@ -1,41 +1,39 @@
-import { Queue, CardBase } from '.';
+import { Queue, CardBase, Card } from '.';
 
 export class Player {
     isComputer: any;
     name: string;
     hand: Queue;
-    stack: any[];
-    constructor(isComputer) {
+    stack: Card[];
+    constructor(isComputer: boolean) {
         this.isComputer = isComputer;
         this.name = this.isComputer ? 'Computer' : 'User';
-
         this.hand = new Queue();
         this.stack = [];
     }
     
     /**
      * Add card to player's hand
-     * @param {Card} card 
      */
-    add(card) {
+    add(card: Card) {
         this.hand.enqueue(card);
     }
     
-    draw(numberOfCardsToDraw) {
+    draw(numberOfCardsToDraw: number) {
         for (var i = 0; i < numberOfCardsToDraw; i++) {
             this.stack.push(this.hand.dequeue());
         }
     }
     
-    transferStack(queue) {
+    transferStack(queue: Queue) {
         while (!this.stack || this.stack.length > 0){
             queue.enqueue(this.stack.pop());
         }
     }
     
-    get cardInPlay() {
-        if(this.stack[0]) return this.stack[this.stack.length - 1];
+    get valueOfCardInPlay(): number {
+        if(this.stack[0]) return this.stack[this.stack.length - 1].value;
 
-        return new CardBase();
+        return -1;
     }
 }

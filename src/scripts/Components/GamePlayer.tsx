@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { CardView, GameCardStack, GamePlayerInfo } from '.';
-import { CardBack } from '../Logic';
+import { CardBack, Player } from '../Logic';
 
-export function GamePlayer({player}) {
-    let widthBoundary = 1660;
+interface IProp {
+    player: Player;
+}
+
+export function GamePlayer({player}: IProp) {
+
     let css = {
         display: "flex"
     };

@@ -25,7 +25,7 @@ export class GameOfWar {
     }
 
     nextRound() {
-        
+
         while (!this.previousRoundsQueue || this.previousRoundsQueue.length > 0){
             let previousRoundAction = this.previousRoundsQueue.pop();
             previousRoundAction();
@@ -34,19 +34,19 @@ export class GameOfWar {
         this.draw(this.state.cardsToDraw);
     }
 
-    draw(numberOfCardsToDraw) {
+    draw(numberOfCardsToDraw: number) {
         // should not draw a number of cards that exceeds the amount contained in a player's hand
         numberOfCardsToDraw = Math.min(numberOfCardsToDraw, ...this.players.map(p => p.hand.length));
 
         this.computer.draw(numberOfCardsToDraw);
         this.user.draw(numberOfCardsToDraw);
 
-        if (this.computer.cardInPlay.value > this.user.cardInPlay.value) {
+        if (this.computer.valueOfCardInPlay > this.user.valueOfCardInPlay) {
             this.win(this.computer, this.user, "Computer won this round.");
             return;
         }
 
-        if (this.computer.cardInPlay.value < this.user.cardInPlay.value) {
+        if (this.computer.valueOfCardInPlay < this.user.valueOfCardInPlay) {
             this.win(this.user, this.computer, "You won this round!");
             return;
         }
@@ -59,7 +59,7 @@ export class GameOfWar {
         };
     }
 
-    win(winner, loser, roundMessage) {        
+    win(winner: Player, loser: Player, roundMessage: string) {        
         this.previousRoundsQueue.push(() => {
             winner.transferStack(winner.hand);
             loser.transferStack(winner.hand);
