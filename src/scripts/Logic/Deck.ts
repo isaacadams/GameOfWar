@@ -2,6 +2,9 @@ import { Card } from './Card';
 import '@isaacadams/extensions';
 
 export class Deck {
+    names: string[];
+    suits: string[];
+    cards: any[];
     constructor() {
         this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
         this.suits = ['club', 'heart', 'spade', 'diamond'];

@@ -5,6 +5,7 @@
  * When they add a card to their hand, all other cards added before it should be removed first before the new card is removed
  */
 export class Queue {
+    array: any[];
     constructor() {
         this.array = [];
     }

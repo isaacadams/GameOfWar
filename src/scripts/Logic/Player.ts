@@ -1,8 +1,13 @@
 import { Card } from './Card';
 import { Queue } from './Queue';
+import { CardBase } from 'dist/index.93cec7c3';
 var util = require('util');
 
 export class Player {
+    isComputer: any;
+    name: string;
+    hand: Queue;
+    stack: any[];
     constructor(isComputer) {
         this.isComputer = isComputer;
         this.name = this.isComputer ? 'Computer' : 'User';
@@ -32,6 +37,8 @@ export class Player {
     }
     
     get cardInPlay() {
-        return util.isNullOrUndefined(this.stack[0]) ? new Card() : this.stack[this.stack.length - 1];
+        if(this.stack[0]) return this.stack[this.stack.length - 1];
+
+        return new CardBase();
     }
 }

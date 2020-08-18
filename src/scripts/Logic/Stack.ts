@@ -6,6 +6,7 @@
  * the card on the top of their stack was the last on in and will be the first one to be taken out into their hand if they win or, if not, the other player's hand
  */
 export class Stack {
+    array: any[];
     constructor() {
         this.array = [];
     }

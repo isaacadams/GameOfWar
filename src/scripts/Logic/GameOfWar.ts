@@ -4,6 +4,9 @@ import { Deck } from "./Deck";
 var util = require('util');
 
 export class GameOfWar {
+    players: Player[];
+    state: { gameOver: boolean; cardsToDraw: number; roundMessage: string; buttonMessage: string; };
+    previousRoundsQueue: any[];
     constructor() {
         this.players = [new Player(false), new Player(true)];
         
