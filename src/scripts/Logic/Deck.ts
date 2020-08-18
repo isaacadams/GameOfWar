@@ -1,4 +1,4 @@
-import { Card } from './Card';
+import { Card } from '.';
 import '@isaacadams/extensions';
 
 export class Deck {

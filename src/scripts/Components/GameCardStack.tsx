@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CardBase } from '../Logic/Card';
+import { CardBase } from '../Logic';
 import {CardView} from './CardView';
 
 export function GameCardStack ({ stack }) {

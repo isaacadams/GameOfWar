@@ -1,7 +1,4 @@
-import { Player } from "./Player";
-import { Deck } from "./Deck";
-
-var util = require('util');
+import { Deck, Player } from ".";
 
 export class GameOfWar {
     players: Player[];

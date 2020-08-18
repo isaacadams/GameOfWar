@@ -1,7 +1,4 @@
-import { Card } from './Card';
-import { Queue } from './Queue';
-import { CardBase } from 'dist/index.93cec7c3';
-var util = require('util');
+import { Queue, CardBase } from '.';
 
 export class Player {
     isComputer: any;

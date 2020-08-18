@@ -1,11 +1,11 @@
 import '../styles/game.less';
 import * as React from 'react';
-var ReactDOM = require('react-dom');
+import * as ReactDOM from 'react-dom';
 
-import { GameOfWar } from './Logic/GameOfWar';
+import { GameOfWar } from './Logic';
+import { GameButton, GamePlayer } from './Components';
 import meta from './meta';
-var { GameButton } = require('./Components/GameButton');
-var { GamePlayer } = require('./Components/GamePlayer');
+
 //import {Deck} from './Logic/Deck.js';
 
 const game = new GameOfWar();

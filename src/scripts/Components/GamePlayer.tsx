@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { CardView } from './CardView';
-import { GameCardStack } from './GameCardStack';
-import { GamePlayerInfo } from './GamePlayerInfo';
-import { CardBack } from '../Logic/Card';
+import { CardView, GameCardStack, GamePlayerInfo } from '.';
+import { CardBack } from '../Logic';
 
 export function GamePlayer({player}) {
     let widthBoundary = 1660;
