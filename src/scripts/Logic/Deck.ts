@@ -4,7 +4,7 @@ import '@isaacadams/extensions';
 export class Deck {
     names: string[];
     suits: string[];
-    cards: any[];
+    cards: Card[];
     constructor() {
         this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
         this.suits = ['club', 'heart', 'spade', 'diamond'];
@@ -17,7 +17,7 @@ export class Deck {
         this.shuffle();
     }
 
-    shuffle() {
+    shuffle(): void {
         this.cards.sort(function (a, b) { return 0.5 - Math.random(); });
     }
 
@@ -25,7 +25,7 @@ export class Deck {
      * @param {number} numOfCardsPerHand number of cards per hand
      * @returns {Card[]} deals out the number of cards specified
      */
-    dealCards(numOfCardsPerHand) {
+    dealCards(numOfCardsPerHand: number): Card[] {
         return this.cards.takeRandomly(numOfCardsPerHand);
     }
 }
