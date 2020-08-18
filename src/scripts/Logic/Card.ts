@@ -1,5 +1,9 @@
 export class Card {
-    constructor(value, suit, name) {
+    value: number;
+    suit: string;
+    name: string;
+
+    constructor(value: number, suit: string, name: string) {
         this.value = value;
         this.suit = suit;
         this.name = name;
@@ -11,6 +15,7 @@ export class Card {
 }
 
 export class CardBack {
+    name: string;
     constructor() {
         this.name = "back";
     }
@@ -21,6 +26,7 @@ export class CardBack {
 }
 
 export class CardBase {
+    name: string;
     constructor() {
         this.name = "card-base";
     }
@@ -31,6 +37,8 @@ export class CardBase {
 }
 
 export class CardImagePaths {
+    path: string;
+    type: string;
     constructor(){
         this.path = "playingcards";
         this.type = "png";
