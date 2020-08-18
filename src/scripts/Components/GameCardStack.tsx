@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CardBase } from '../Logic/Card.js';
-var { CardView } = require("./CardView.jsx");
+var { CardView } = require("./CardView");
 
 export function GameCardStack ({ stack }) {
     return (

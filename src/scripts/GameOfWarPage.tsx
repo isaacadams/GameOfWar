@@ -1,10 +1,10 @@
-require('../styles/game.less');
+import '../styles/game.less';
 import * as React from 'react';
 var ReactDOM = require('react-dom');
 
 import { GameOfWar } from './Logic/GameOfWar';
-var { GameButton } = require('./Components/GameButton.jsx');
-var { GamePlayer } = require('./Components/GamePlayer.jsx');
+var { GameButton } = require('./Components/GameButton');
+var { GamePlayer } = require('./Components/GamePlayer');
 
 const game = new GameOfWar();
 function GameOfWarPage() {

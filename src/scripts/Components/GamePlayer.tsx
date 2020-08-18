@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { CardView } from './CardView.jsx';
-import { GameCardStack } from './GameCardStack.jsx';
-import { GamePlayerInfo } from './GamePlayerInfo.jsx';
+import { CardView } from './CardView';
+import { GameCardStack } from './GameCardStack';
+import { GamePlayerInfo } from './GamePlayerInfo';
 import { CardBack } from '../Logic/Card.js';
 
 export function GamePlayer({player}) {
