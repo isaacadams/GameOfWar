@@ -55,11 +55,12 @@ export class GameOfWar {
         this.state = {
             ...this.state,
             roundMessage: "War!",
-            cardsToDraw: 3
+            cardsToDraw: 3,
+            buttonMessage: "Commence War"
         };
     }
 
-    win(winner: Player, loser: Player, roundMessage: string) {        
+    win(winner: Player, loser: Player, roundMessage: string) {
         this.previousRoundsQueue.push(() => {
             winner.transferStack(winner.hand);
             loser.transferStack(winner.hand);
@@ -74,7 +75,8 @@ export class GameOfWar {
         this.state = {
             ...this.state,
             roundMessage,
-            cardsToDraw: 1
+            cardsToDraw: 1,
+            buttonMessage: "Deal"
         };
     }
 

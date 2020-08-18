@@ -25,6 +25,7 @@ function GameOfWarPage() {
     );
 
     function handleClick(event) {
+        setState(game.state);
         if(gameState.gameOver) return;
         game.nextRound();
         setState(game.state);
