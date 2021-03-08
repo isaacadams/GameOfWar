@@ -1,5 +1,5 @@
 //import { getRandomInt } from '@isaacadams/extensions';
-import { Card } from '../src/scripts/Logic/Card';
+import { Card } from './Card';
 
 // https://jestjs.io/docs/en/api
 
