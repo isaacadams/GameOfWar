@@ -1,19 +1,16 @@
 {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "target": "ESNEXT",
-      "lib": [ "DOM", "ES6" ],
-      "jsx": "react",
-      "allowJs": true,
-      "sourceMap": true,
-      "esModuleInterop": true,
-      "baseUrl": ".",
-      "paths": {
-        "~*": ["src/*"],
-      }
-    },
-    "exclude": [
-      "node_modules"
-    ]
-  }
-  
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ESNEXT",
+    "lib": ["DOM", "ES6"],
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
